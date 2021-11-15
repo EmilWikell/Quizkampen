@@ -1,5 +1,12 @@
 public class QuestionGenerator {
-    public QuestionClass generateQuestion(){
+
+    String usedQuestion;
+    private String category;
+    public QuestionClass generateQuestion(String category){
+        //currentQuestion = randomizar ettt random index i databas
+        //if(!usedQuestion.contains(currentQuestion)
+        //om falsk generera nytt currentquestion
+        this.category = category;
         String question = "";
         String altOne = "";
         String altTwo = "";

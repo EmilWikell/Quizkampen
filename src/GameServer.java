@@ -11,6 +11,5 @@ public class GameServer implements Runnable{
     }
 
     public void run(){
-
     }
 }

@@ -14,10 +14,15 @@ public class GameServer implements Runnable{
     }
 
     public void run(){
+
         while (gameRound){
             QuestionClass question = qGenerator.generateQuestion();
             player1.sendQuestion(question);
             player2.sendQuestion(question);
+
+            // tar emot rätt eller fel
+
+            //gameround ++
         }
     }
 }

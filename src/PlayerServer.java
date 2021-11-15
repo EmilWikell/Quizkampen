@@ -15,14 +15,6 @@ public class PlayerServer {
             e.printStackTrace();
         }
     }
-    public String inputFromClient(){
-        try {
-            return fromClient.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
     public void sendQuestion(QuestionClass question){
         try {
             toClient.writeObject(question);

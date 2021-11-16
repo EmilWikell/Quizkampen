@@ -7,14 +7,12 @@ public class GameServer implements Runnable{
     PlayerServer player1;
     PlayerServer player2;
     Thread activity = new Thread(this);
-    QuestionGenerator qGenerator;
     String category;
 
     public GameServer(PlayerServer player1, PlayerServer player2) {
         activity.start();
         this.player1 = player1;
         this.player2 = player2;
-        qGenerator = new QuestionGenerator();
     }
 
     public void run(){

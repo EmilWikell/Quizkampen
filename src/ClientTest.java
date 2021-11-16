@@ -126,7 +126,7 @@ public class ClientTest implements ActionListener {
     public void returnToServer(){
         setToSendBackToServer("CORRECT");
         System.out.println("we sent back info to server");
-        out.write(getToSendBackToServer());
+        out.println(getToSendBackToServer().trim());
     }
 
     public void objectInformationToStrings(Object object){

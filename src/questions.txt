@@ -1,0 +1,255 @@
+!ENTERTAINMENT
+1.	What year were the Oscar Academy Awards held the first time?:
+a.	1929
+b.	1949
+c.	1912
+d.	1961
+2.	What is the name of the district in New York that is famous for hosting multiple touring musicals?
+a.	Hamptons
+b.	Broadway
+c.	Greenville
+d.	Hoboken
+3.	What does the BBC stand for?
+a.	British Beer Consumption
+b.	British Breeds Corporation
+c.	British Branding Company
+d.	British Broadcasting Corporation
+4.	For which film did Leonardo Di Caprio win an Oscar as best actor?
+a.	The Aviator
+b.	Titanic
+c.	The Revenant
+d.	Shutter Island
+5.	Who was director of the film Citizen Kane?
+a.	Orson Welles
+b.	Clint Eastwood
+c.	John Ford
+d.	Alfred Hitchcock
+6.	What are the names of The Beatles?
+a.	John, Ringo, Paul, George
+b.	Martin, Paul, George, John
+c.	Mick, Paul, John, Ringo
+d.	Robert, Ringo, Paul, Mick
+7.	What is the colour of the pill that Neo took in Matrix?
+a.	Green
+b.	White
+c.	Blue
+d.	Red
+8.	What type of animal’s head is found in the famous scene from The Godfather?
+a.	Cow
+b.	Dog
+c.	Horse
+d.	Shark
+9.	For which movie did Steven Spielberg win his first Oscar for best director?
+a.	Forrest Gump
+b.	E.T.
+c.	Schindler’s List
+d.	Jaws
+10.	Which Hollywood actor plays himself in Zombieland?
+a.	Bill Murray
+b.	Nicolas Cage
+c.	Ben Affleck
+d.	Owen Wilson
+!GEOGRAPHY
+1.	What is the capital of Scotland?
+a.	Glasgow
+b.	Edinburgh
+c.	Cork
+d.	Aberdeen
+2.	Where would you find the ”Spanish Steps”?
+a.	London
+b.	Rome
+c.	Paris
+d.	Berlin
+3.	How many countries border Kyrgyzstan?
+a.	2
+b.	4
+c.	6
+d.	3
+4.	What is the Earth’s largest continent?
+a.	Europe
+b.	Antarctica
+c.	Asia
+d.	Africa
+5.	What country accounts for more than half of the western coastline of South America?
+a.	Peru
+b.	Bolivia
+c.	Brazil
+d.	Chile
+6.	What river runs through Baghdad?
+a.	Euphrates
+b.	Karun
+c.	Tigris
+d.	Jordan
+7.	What country has the most natural lakes?
+a.	United States
+b.	Australia
+c.	India
+d.	Canada
+8.	What percentage of the River Nile is located in Egypt?
+a.	22%
+b.	83%
+c.	9%
+d.	100%
+9.	In what country can you visit Machu Picchu?
+a.	Colombia
+b.	Chile
+c.	Bolivia
+d.	Peru
+10.	What is the capital of Nigeria?
+a.	Ibadan
+b.	Abuja
+c.	Lagos
+d.	Kano
+!SPORTS
+1.	What year did China win its first Olympic medal?
+a.	1968
+b.	1952
+c.	1984
+d.	1936
+2.	What sport did Edson Arantes do Nascimento play professionally?
+a.	Basketball
+b.	Tennis
+c.	Boxing
+d.	Football
+3.	Who holds the record for most consecutive Wimbledon Titles?
+a.	Pete Sampras
+b.	Serena Williams
+c.	Roger Federer
+d.	Martina Navratilova
+4.	What team holds the record for most consecutive NBA titles?
+a.	Boston Celtics
+b.	New York Knicks
+c.	Chicago Bulls
+d.	Los Angeles Lakers
+5.	How many FIFA World Cup tournaments has Diego Armando Maradona played in?
+a.	3
+b.	2
+c.	4
+d.	1
+6.	Where was golf player Vijay Singh born?
+a.	Pakistan
+b.	India
+c.	Fiji
+d.	United States
+7.	In what year did Judo become an Olympic Sport?
+a.	1964
+b.	1972
+c.	1992
+d.	1960
+8.	Who was the winner of the women’s singles at Wimbledon in 2016?
+a.	Martina Higgins
+b.	Martina Navratilova
+c.	Serena Williams
+d.	Steffi Graf
+9.	What caused the cancelation of the Olympic Games in 1940 and 1944?
+a.	WWII
+b.	WWI
+c.	Economic Crisis
+d.	Earthquakes
+10.	What country is NBA basketball player Yao Ming originally from?
+a.	South Korea
+b.	China
+c.	Indonesia
+d.	Philippines
+!HISTORY
+1.	Who wrote the novel “To Kill a Mockingbird”, published in 1960?
+a.	Truman Capote
+b.	Harper Lee
+c.	Virginia Wolf
+d.	George Orwell
+2.	What is the name for the Greek goddess of victory?
+a.	Nike
+b.	Diana
+c.	Aurora
+d.	Juno
+3.	In what year did India gain its independence from Britain?
+a.	1925
+b.	1960
+c.	1971
+d.	1947
+4.	Who painted the ceiling of the Sistine Chapel?
+a.	Michelangelo
+b.	Donatello
+c.	Raphael
+d.	Rigoletto
+5.	In what year was Queen Elizabeth II born?
+a.	1935
+b.	1920
+c.	1926
+d.	1952
+6.	In 1893, which country became the first to give women the right to vote?
+a.	Australia
+b.	United States
+c.	Sweden
+d.	New Zealand
+7.	From 1964 to 1980, what country was known as Rhodesia?
+a.	Nigeria
+b.	India
+c.	Zimbabwe
+d.	Argelia
+8.	In what year did Fidel Castro die?
+a.	2000
+b.	2016
+c.	1998
+d.	1975
+9.	Which city is traditionally said be built on seven hills?
+a.	Rome
+b.	Paris
+c.	London
+d.	New York
+10.	When did the Cold War officially end?
+a.	1995
+b.	2020
+c.	1989
+d.	1949
+!IT – COMPUTERS
+1.	Which Microsoft software produces files with the extension .PPT?
+a.	Excel
+b.	Power Point
+c.	Access
+d.	Word
+2.	What is the name for a network that allows communication within an organisation?
+a.	Ethernet
+b.	Intranet
+c.	Internet
+d.	GSMI
+3.	Which was the first product to be produced by Apple that had a name beginning with their trademark small letter “I”?
+a.	iMac
+b.	iPod
+c.	iShuffle
+d.	iPhone
+4.	LAN
+a.	Local Administrative Network
+b.	Local Area Network
+c.	Light Administration Network
+d.	Local Area Node
+5.	VPN
+a.	Virtual Price Net
+b.	Verizon Products Network
+c.	Virtual Private Network
+d.	Virtual Product Net
+6.	Which mobile phone company has produced models called “StarTAC”, “V220” and “SLVR”?
+a.	Nokia
+b.	Ericsson
+c.	Motorola
+d.	LG
+7.	Pressing the CTRL key on a PC along with which letter of the Alphabet is a short cut for the “Undo” command?
+a.	C
+b.	S
+c.	X
+d.	Z
+8.	What’s the name of the world’s first artificial satellite?
+a.	Apollo IV
+b.	Sputnik I
+c.	Laika II
+d.	MIR
+9.	In which US State are the headquarters of the Microsoft Corporation?
+a.	New York
+b.	Washington
+c.	Texas
+d.	New Mexico
+10.	In which year was the Sony PlayStation released?
+a.	1994
+b.	1990
+c.	1985
+d.	2001

@@ -49,7 +49,7 @@ public class ClientTest implements ActionListener {
 
         try {
             Socket socket = new Socket(hostName, portNumber);
-            out = new PrintWriter(socket.getOutputStream(),true);
+            out = new PrintWriter(socket.getOutputStream(), true);
             in = new ObjectInputStream(socket.getInputStream());
 
             Object questionPackFromServer = in.readObject();
@@ -126,7 +126,7 @@ public class ClientTest implements ActionListener {
     public void returnToServer(){
         setToSendBackToServer("CORRECT");
         System.out.println("we sent back info to server");
-        out.println(getToSendBackToServer());
+        out.write(getToSendBackToServer());
     }
 
     public void objectInformationToStrings(Object object){

@@ -32,7 +32,7 @@ public class QuestionClass implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return question +","+ altOne +","+ altTwo +","+ altThree +","+ answer;
+    public String toString(){
+        return (question +","+ altOne +","+ altTwo +","+ altThree +","+ answer);
     }
 }

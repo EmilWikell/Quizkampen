@@ -5,6 +5,7 @@ public class ServerListener {
     public static void main(String[] args) {new ServerListener();}
 
     public ServerListener(){
+        DAO DAO = new DAO();
         try {
             ServerSocket listener = new ServerSocket(55551);
             while (true){
@@ -13,7 +14,7 @@ public class ServerListener {
                 System.out.println("1st person connected");
                 PlayerServer player2 = new PlayerServer(listener.accept());
                 System.out.println("2nd person connected");
-                GameServer game = new GameServer(player1, player2);
+                GameServer game = new GameServer(DAO,player1, player2);
                 System.out.println("Game created");
             }
         }catch (IOException e){

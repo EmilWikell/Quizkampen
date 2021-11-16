@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameServer implements Runnable{
 
@@ -6,13 +8,14 @@ public class GameServer implements Runnable{
 
     PlayerServer player1;
     PlayerServer player2;
+    DAO DAO;
     Thread activity = new Thread(this);
-    String category;
 
-    public GameServer(PlayerServer player1, PlayerServer player2) {
-        activity.start();
+    public GameServer(DAO DAO, PlayerServer player1, PlayerServer player2) {
+        this.DAO = DAO;
         this.player1 = player1;
         this.player2 = player2;
+        activity.start();
     }
 
     public void run(){
@@ -30,16 +33,17 @@ public class GameServer implements Runnable{
             for (int i = 0; i < amountOfQuestion; i++) {
                 question.add(qGenerator.generateQuestion(category));
             }
-
          */
-        QuestionClass question = new QuestionClass("Vad är störst?","1", "2", "3","4");
+        String chosenCategory = "SPORTS";
+
+        List<QuestionClass> chosenQuestions = DAO.getQuestions(amountOfQuestion, chosenCategory);
             for (int i = 0; i < amountOfQuestion; i++) {
-                player1.sendQuestion(question);
+                player1.sendQuestion(chosenQuestions.get(i));
                 player1.receiveAnswer();
                 //TODO player 2 waiting screen
             }
             for (int i = 0; i < amountOfQuestion; i++) {
-                player2.sendQuestion(question);
+                player2.sendQuestion(chosenQuestions.get(i));
                 player2.receiveAnswer();
                 //TODO player 1 waiting screen
             }

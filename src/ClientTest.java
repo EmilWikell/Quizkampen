@@ -38,8 +38,6 @@ public class ClientTest implements ActionListener {
         this.toSendBackToServer = toSendBackToServer;
     }
     String toSendBackToServer = "This feedback";
-
-
     String correctAnswere;
 
     ClientTest() throws IOException, ClassNotFoundException {
@@ -49,7 +47,7 @@ public class ClientTest implements ActionListener {
 
         try {
             Socket socket = new Socket(hostName, portNumber);
-            out = new PrintWriter(socket.getOutputStream());
+            out = new PrintWriter(socket.getOutputStream(), true);
             in = new ObjectInputStream(socket.getInputStream());
 
             Object questionPackFromServer = in.readObject();
@@ -92,8 +90,6 @@ public class ClientTest implements ActionListener {
             e.printStackTrace();
             e.getMessage();
         }
-
-
     }
 
 

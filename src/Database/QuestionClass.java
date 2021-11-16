@@ -1,4 +1,4 @@
-package ClientLogic;
+package Database;
 
 import java.io.Serializable;
 import java.util.List;

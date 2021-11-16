@@ -1,6 +1,5 @@
-import java.util.ArrayList;
 import java.util.List;
-import ClientLogic.QuestionClass;
+import Database.QuestionClass;
 
 public class GameServer implements Runnable{
 

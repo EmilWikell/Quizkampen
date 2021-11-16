@@ -5,11 +5,9 @@ package ClientLogic;/*
  *Comment about this project
  */
 
+import Database.QuestionClass;
 import GUI.QuestionPanel;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.Socket;
 import javax.swing.*;
@@ -50,7 +48,7 @@ public class ClientTest {
                  jf.setLocationRelativeTo(null);
                  jf.setVisible(true);
              }
-          // if(informationPackFromServer instanceof ClientLogic.QuestionClass){
+          // if(informationPackFromServer instanceof Database.QuestionClass){
             // måste ändras till en Category Clas
                 // open panel with question
                 //add(GUI.QuestionFrame(questionPackFromServer));

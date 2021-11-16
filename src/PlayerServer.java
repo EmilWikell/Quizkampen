@@ -1,4 +1,4 @@
-import ClientLogic.QuestionClass;
+import Database.QuestionClass;
 
 import java.io.*;
 import java.net.Socket;

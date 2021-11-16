@@ -45,11 +45,11 @@ public class ClientTest implements ActionListener {
     ClientTest() throws IOException, ClassNotFoundException {
 
         String hostName = "127.0.0.1";  //localhost
-        int portNumber = 55555;
+        int portNumber = 55551;
 
         try {
             Socket socket = new Socket(hostName, portNumber);
-            out = new PrintWriter(socket.getOutputStream());
+            out = new PrintWriter(socket.getOutputStream(),true);
             in = new ObjectInputStream(socket.getInputStream());
 
             Object questionPackFromServer = in.readObject();
@@ -126,7 +126,7 @@ public class ClientTest implements ActionListener {
     public void returnToServer(){
         setToSendBackToServer("CORRECT");
         System.out.println("we sent back info to server");
-        out.write(getToSendBackToServer());
+        out.println(getToSendBackToServer());
     }
 
     public void objectInformationToStrings(Object object){

@@ -28,6 +28,7 @@ public class PlayerServer {
     public void receiveAnswer(){
         try {
             String s = fromClient.readLine();
+            System.out.println(s);
             if(s.equals("CORRECT")){
                 System.out.println("We received correct answere.");
                 points += 5;

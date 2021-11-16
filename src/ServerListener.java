@@ -6,7 +6,7 @@ public class ServerListener {
 
     public ServerListener(){
         try {
-            ServerSocket listener = new ServerSocket(55555);
+            ServerSocket listener = new ServerSocket(55551);
             while (true){
                 System.out.println("Server started");
                 PlayerServer player1 = new PlayerServer(listener.accept());

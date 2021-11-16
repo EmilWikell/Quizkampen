@@ -6,6 +6,7 @@ package ClientLogic;/*
  */
 
 import Database.QuestionClass;
+import GUI.CategoryPanel;
 import GUI.QuestionPanel;
 
 import java.io.*;
@@ -48,13 +49,15 @@ public class ClientTest {
                  jf.setLocationRelativeTo(null);
                  jf.setVisible(true);
              }
-          // if(informationPackFromServer instanceof Database.QuestionClass){
-            // måste ändras till en Category Clas
-                // open panel with question
-                //add(GUI.QuestionFrame(questionPackFromServer));
-//            if(informationPackFromServer instanceof WaitingClass){
-//
-//            }
+
+//            if(informationPackFromServer instanceof QuestionClass){  // OBS! det ska vara CategoryClass!!
+//                JFrame jf = new JFrame();
+//                jf.add(new CategoryPanel(theQuestion, alt1a, alt2a, alt3a, alt4a));
+//                jf.pack();
+//                jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//                jf.setLocationRelativeTo(null);
+//                jf.setVisible(true);
+//           }
 
         }catch (Exception e){
             e.printStackTrace();

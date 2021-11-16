@@ -9,7 +9,7 @@ public class DAO {
         new DAO();
     }
 
-    private String path = "C:\\Users\\emils\\IdeaProjects\\OOP & JAVA\\Sprint5\\Quizkampen\\src\\questions.txt";
+    private String path = "src/questions.txt";
     private List<QuestionClass> ENTERTAINMENT = new ArrayList<>();
     private List<QuestionClass> GEOGRAPHY = new ArrayList<>();
     private List<QuestionClass> SPORTS = new ArrayList<>();

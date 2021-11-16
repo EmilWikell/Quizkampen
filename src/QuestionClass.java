@@ -1,4 +1,3 @@
-import java.util.List;
 
 public class QuestionClass {
     private String question;
@@ -28,5 +27,9 @@ public class QuestionClass {
     }
     public String getAnswer() {
         return answer;
+    }
+
+    public String toString(){
+        return (question +","+ altOne +","+ altTwo +","+ altThree +","+ answer);
     }
 }

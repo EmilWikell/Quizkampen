@@ -34,10 +34,16 @@ public class PlayerServer {
             e.printStackTrace();
         }
     }
-    public String chooseCategory(){
-        String availableCategory = "djur,sport,historia,it";
-
-        return "djur"; //hårdkodat ändra senare
+    public String chooseCategory() {
+        //TODO send alternatives to user(four category's), wait for database.
+        try{
+            return fromClient.readLine();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.exit(452);
+        }
+        System.exit(452);
+        return "";
     }
 
 }

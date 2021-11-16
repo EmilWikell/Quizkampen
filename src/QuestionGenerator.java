@@ -1,3 +1,5 @@
+import ClientLogic.QuestionClass;
+
 public class QuestionGenerator {
 
     String usedQuestion;

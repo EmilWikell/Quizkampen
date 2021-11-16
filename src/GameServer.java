@@ -1,3 +1,4 @@
+import ClientLogic.QuestionClass;
 
 public class GameServer implements Runnable{
 
@@ -28,7 +29,7 @@ public class GameServer implements Runnable{
                 category = player2.chooseCategory();
                 //TODO player 1 waiting screen
             }
-            List<QuestionClass> question = new ArrayList<>();
+            List<ClientLogic.QuestionClass> question = new ArrayList<>();
             for (int i = 0; i < amountOfQuestion; i++) {
                 question.add(qGenerator.generateQuestion(category));
             }

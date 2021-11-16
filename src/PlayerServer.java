@@ -1,3 +1,5 @@
+import ClientLogic.QuestionClass;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -27,10 +29,10 @@ public class PlayerServer {
     }
     public void receiveAnswer(){
         try {
-            String s = fromClient.readLine();
+            String s = fromClient.readLine().trim();
             System.out.println(s);
             if(s.equals("CORRECT")){
-                System.out.println("We received correct answere.");
+                System.out.println("We received correct answer!");
                 points += 5;
             }
         } catch (IOException e) {

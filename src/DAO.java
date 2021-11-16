@@ -1,12 +1,11 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class Categories {
+public class DAO {
     public static void main(String[] args) {
-        new Categories();
+        new DAO();
     }
 
     private String path = "C:\\Users\\emils\\IdeaProjects\\OOP & JAVA\\Sprint5\\Quizkampen\\src\\questions.txt";
@@ -17,7 +16,7 @@ public class Categories {
     private List<QuestionClass> IT = new ArrayList<>();
     private BufferedReader buffIn;
  
-    public Categories(){
+    public DAO(){
         String tempLine;
         String currentCategory ="";
         try {

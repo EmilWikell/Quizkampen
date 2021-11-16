@@ -31,8 +31,6 @@ public class ClientTest implements ActionListener {
     String alt3a;
     String alt4a;
 
-
-
     public String getToSendBackToServer() {
         return toSendBackToServer;
     }
@@ -42,13 +40,12 @@ public class ClientTest implements ActionListener {
     String toSendBackToServer = "This feedback";
 
 
-
     String correctAnswere;
 
     ClientTest() throws IOException, ClassNotFoundException {
 
         String hostName = "127.0.0.1";  //localhost
-        int portNumber = 12345;
+        int portNumber = 55555;
 
         try {
             Socket socket = new Socket(hostName, portNumber);
@@ -56,10 +53,7 @@ public class ClientTest implements ActionListener {
             in = new ObjectInputStream(socket.getInputStream());
 
             Object questionPackFromServer = in.readObject();
-
-            System.out.println(questionPackFromServer.toString());
-
-            // objectInformationToStrings(questionPackFromServer);
+            objectInformationToStrings(questionPackFromServer);
             //TODO Bryt ut informationen från objectet till strängar för att populera spelplan
 
             jf.add(questionPanel);
@@ -70,24 +64,23 @@ public class ClientTest implements ActionListener {
             questionPanel.setLayout(new GridLayout(5, 1));
             questionPanel.setVisible(true);
 
-
-            question.setText("STRING 1 från servern");
+            question.setText(theQuestion);
             questionPanel.add(question);
 
-            alt1.setText("alternative 1");
+            alt1.setText(alt1a);
             alt1.addActionListener(this);
             questionPanel.add(alt1);
 
 
-            alt2.setText("alternative 2");
+            alt2.setText(alt2a);
             alt2.addActionListener(this);
             questionPanel.add(alt2);
 
-            alt3.setText("alternative 3");
+            alt3.setText(alt3a);
             alt3.addActionListener(this);
             questionPanel.add(alt3);
 
-            alt4.setText("alternative 4");
+            alt4.setText(alt4a);
             alt4.addActionListener(this);
             questionPanel.add(alt4);
 
@@ -99,9 +92,6 @@ public class ClientTest implements ActionListener {
             e.printStackTrace();
             e.getMessage();
         }
-
-
-
 
 
     }
@@ -134,14 +124,29 @@ public class ClientTest implements ActionListener {
     }
 
     public void returnToServer(){
-        setToSendBackToServer("Correct Answere 1");
+        setToSendBackToServer("CORRECT");
+        System.out.println("we sent back info to server");
         out.write(getToSendBackToServer());
     }
 
     public void objectInformationToStrings(Object object){
+        System.out.println(object.toString());
         String fullString = object.toString();
         //fullString.split(",");
+        String[] temp = fullString.split(",");
+        theQuestion = temp[0];
+        alt1a = temp[1];
+        alt2a = temp[2];
+        alt3a = temp[3];
+        alt4a = temp[4];
 
+        //fullString.split(",");
+//
+//        String theQuestion;
+//        String alt1a;
+//        String alt2a;
+//        String alt3a;
+//        String alt4a;
 
     }
 

@@ -19,6 +19,7 @@ public class PlayerServer {
     }
     public void sendQuestion(QuestionClass question){
         try {
+            String temp = "Vad är störst?,1, 2, 3, 4";
             toClient.writeObject(question);
         } catch (IOException e) {
             e.printStackTrace();
@@ -28,6 +29,7 @@ public class PlayerServer {
         try {
             String s = fromClient.readLine();
             if(s.equals("CORRECT")){
+                System.out.println("We received correct answere.");
                 points += 5;
             }
         } catch (IOException e) {

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.List;
 
-public class QuestionClass {
+public class QuestionClass implements Serializable {
     private String question;
     private String altOne;
     private String altTwo;
@@ -28,5 +29,10 @@ public class QuestionClass {
     }
     public String getAnswer() {
         return answer;
+    }
+
+    @Override
+    public String toString() {
+        return question +","+ altOne +","+ altTwo +","+ altThree +","+ answer;
     }
 }

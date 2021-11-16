@@ -2,18 +2,48 @@ import java.io.*;
 import java.net.Socket;
 
 public class PlayerServer {
-    Socket socket;
-    PrintWriter toClient;
-    BufferedReader fromClient;
+    private Socket socket;
+    private ObjectOutput toClient;
+    private BufferedReader fromClient;
+    int points;
 
     public PlayerServer(Socket socket) {
+        points = 0;
         this.socket = socket;
         try {
-            toClient = new PrintWriter((socket.getOutputStream()),true);
+            toClient = new ObjectOutputStream(socket.getOutputStream());
             fromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+    public void sendQuestion(QuestionClass question){
+        try {
+            toClient.writeObject(question);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void receiveAnswer(){
+        try {
+            String s = fromClient.readLine();
+            if(s.equals("CORRECT")){
+                points += 5;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public String chooseCategory() {
+        //TODO send alternatives to user(four category's), wait for database.
+        try{
+            return fromClient.readLine();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.exit(452);
+        }
+        System.exit(452);
+        return "";
     }
 
 }

@@ -65,6 +65,7 @@ public class CategoryPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+
         //  OBS! Tanke??? Att vi skapar en metod likt ct.returnToServer() men som är separat och returnar next Category.
         //  Vet inte hur vi ska göra exakt men vi måste bestämma hur vi sätter nästa kategori
         //  vi måste hitta en sätt att stänga ner och ta emot nästa panel --> protokol ändå?

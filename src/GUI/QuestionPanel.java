@@ -70,6 +70,9 @@ public class QuestionPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //removeGUI();  ??? Hur löser vi att det ska försvinna och repaintas osv...
+        
+
 
         if(e.getSource()== button1){
             if(button1.getText() == correctAnswer){
@@ -87,6 +90,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
                 System.out.println("Correct answer!");
                 button2.setBackground(Color.GREEN);
                 ct.returnToServer("CORRECT");
+                //removeGUI();  ???
             }
             else{
                 System.out.println("Wrong answer!");
@@ -106,7 +110,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
         if(e.getSource()== button4){
             if(button4.getText() == correctAnswer){
                 System.out.println("Correct answer!");
-                button3.setBackground(Color.GREEN);
+                button4.setBackground(Color.GREEN);
                 ct.returnToServer("CORRECT");
             }
             else{

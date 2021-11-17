@@ -1,6 +1,6 @@
 package Server;
 
-import DispatchClasses.CategoryClass;
+import DispatchClasses.CategoryHandler;
 import DispatchClasses.QuestionClass;
 
 import java.io.*;
@@ -41,7 +41,7 @@ public class PlayerServer {
             e.printStackTrace();
         }
     }
-    public String chooseCategory(CategoryClass categoryHandler) {
+    public String chooseCategory(CategoryHandler categoryHandler) {
         try{
             toClient.writeObject(categoryHandler.getSmallListOfCategories());
             String chosenCategory = fromClient.readLine();

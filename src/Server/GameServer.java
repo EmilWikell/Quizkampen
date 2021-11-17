@@ -1,10 +1,9 @@
 package Server;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import DAO.DAO;
-import DispatchClasses.CategoryClass;
+import DispatchClasses.CategoryHandler;
 import DispatchClasses.QuestionClass;
 
 public class GameServer implements Runnable {
@@ -15,12 +14,12 @@ public class GameServer implements Runnable {
     PlayerServer player1;
     PlayerServer player2;
     DAO dao;
-    CategoryClass categoryHandler;
+    CategoryHandler categoryHandler;
     Thread activity = new Thread(this);
 
     public GameServer(DAO dao, PlayerServer player1, PlayerServer player2) {
         this.dao = dao;
-        categoryHandler = new CategoryClass(this.dao);
+        categoryHandler = new CategoryHandler(this.dao);
         this.player1 = player1;
         this.player2 = player2;
         activity.start();

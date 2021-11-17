@@ -1,5 +1,7 @@
-import Database.CategoryClass;
-import Database.QuestionClass;
+package Server;
+
+import DispatchClasses.CategoryClass;
+import DispatchClasses.QuestionClass;
 
 import java.io.*;
 import java.net.Socket;

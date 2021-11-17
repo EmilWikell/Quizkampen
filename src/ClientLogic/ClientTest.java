@@ -5,7 +5,7 @@ package ClientLogic;/*
  *Comment about this project
  */
 
-import Database.QuestionClass;
+import DispatchClasses.QuestionClass;
 import GUI.QuestionPanel;
 
 import java.io.*;

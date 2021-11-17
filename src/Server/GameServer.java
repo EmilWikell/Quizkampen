@@ -1,8 +1,10 @@
+package Server;
+
 import java.util.List;
 
 import DAO.DAO;
-import Database.CategoryClass;
-import Database.QuestionClass;
+import DispatchClasses.CategoryClass;
+import DispatchClasses.QuestionClass;
 
 public class GameServer implements Runnable{
 

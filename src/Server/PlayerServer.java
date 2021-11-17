@@ -1,7 +1,9 @@
 package Server;
 
 import DipatchHandlers.CategoryHandler;
+import DipatchHandlers.ScoreHandler;
 import DispatchClasses.QuestionClass;
+import DispatchClasses.ScoreClass;
 
 import java.io.*;
 import java.net.Socket;
@@ -11,8 +13,11 @@ public class PlayerServer {
     private ObjectOutput toClient;
     private BufferedReader fromClient;
     int points;
+    ScoreHandler scoreHandler;
+    private PlayerServer opp;
 
     public PlayerServer(Socket socket) {
+        scoreHandler = new ScoreHandler();
         points = 0;
         this.socket = socket;
         try {
@@ -22,6 +27,11 @@ public class PlayerServer {
             e.printStackTrace();
         }
     }
+
+    public void setOpp(PlayerServer opp){
+        this.opp = opp;
+    }
+
     public void sendQuestion(QuestionClass question){
         try {
             toClient.writeObject(question);
@@ -55,4 +65,14 @@ public class PlayerServer {
         }
     }
 
+    public void sendScore() {
+        try {
+            toClient.writeObject(new ScoreClass(scoreHandler.getScoreTotal(),
+                    scoreHandler.getScoreThisRound(),
+                    opp.scoreHandler.getScoreTotal(),
+                    opp.scoreHandler.getScoreThisRound()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

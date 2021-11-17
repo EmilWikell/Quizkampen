@@ -5,6 +5,7 @@ import java.util.List;
 import DAO.DAO;
 import DipatchHandlers.CategoryHandler;
 import DispatchClasses.QuestionClass;
+import DispatchClasses.ScoreClass;
 
 public class GameServer implements Runnable {
 
@@ -22,11 +23,12 @@ public class GameServer implements Runnable {
         categoryHandler = new CategoryHandler(this.dao);
         this.player1 = player1;
         this.player2 = player2;
+        this.player1.setOpp(player2);
+        this.player2.setOpp(player1);
         activity.start();
     }
 
     public void run() {
-
 
         for (int j = 0; j < amountOfRounds; j++) {
 
@@ -52,6 +54,9 @@ public class GameServer implements Runnable {
                 player2.sendQuestion(chosenQuestions.get(i));
                 player2.receiveAnswer();
             }
+
+            player1.sendScore();
+            player2.sendScore();
             //TODO score, wait for ok
         }
         //TODO display winner

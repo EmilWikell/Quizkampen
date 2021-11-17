@@ -41,26 +41,26 @@ public class ClientTest {
             objectInformationToStrings(informationPackFromServer);
             //TODO Bryt ut informationen från objectet till strängar för att populera spelplan
 
-            if (informationPackFromServer instanceof QuestionClass) {
-                JFrame jf = new JFrame();
-                jf.add(new QuestionPanel(theQuestion, alt1a, alt2a, alt3a, alt4a));
-                jf.pack();
-                jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                jf.setLocationRelativeTo(null);
-                jf.setVisible(true);
-
-            }
-
-//            if(informationPackFromServer instanceof QuestionClass){  // OBS! det ska vara CategoryClass!!
+//            if (informationPackFromServer instanceof QuestionClass) {
 //                JFrame jf = new JFrame();
-//                jf.add(new CategoryPanel(theQuestion, alt1a, alt2a, alt3a, alt4a));
+//                jf.add(new QuestionPanel(theQuestion, alt1a, alt2a, alt3a, alt4a));
 //                jf.pack();
 //                jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 //                jf.setLocationRelativeTo(null);
 //                jf.setVisible(true);
-//                jf.repaint();
-//                jf.revalidate();
-//           }
+//
+//            }
+
+            if(informationPackFromServer instanceof QuestionClass){  // OBS! det ska vara CategoryClass!!
+                JFrame jf = new JFrame();
+                jf.add(new CategoryPanel(theQuestion, alt1a, alt2a, alt3a, alt4a));
+                jf.pack();
+                jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                jf.setLocationRelativeTo(null);
+                jf.setVisible(true);
+                jf.repaint();
+                jf.revalidate();
+           }
 
         }catch (Exception e){
             e.printStackTrace();
@@ -87,7 +87,10 @@ public class ClientTest {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+
         ClientTest ct = new ClientTest();
+
+
     }
 
 

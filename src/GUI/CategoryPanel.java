@@ -64,31 +64,16 @@ public class CategoryPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-
         //  OBS! Tanke??? Att vi skapar en metod likt ct.returnToServer() men som är separat och returnar next Category.
         //  Vet inte hur vi ska göra exakt men vi måste bestämma hur vi sätter nästa kategori
         //  vi måste hitta en sätt att stänga ner och ta emot nästa panel --> protokol ändå?
-        if(e.getSource()== button1){
-            System.out.println("You selected category: " + category1);
-            button1.setBackground(Color.GREEN);
-            ct.returnToServer(category1);
-        }
-        if(e.getSource()== button2){
-            System.out.println("You selected category: " + category2);
-            button2.setBackground(Color.GREEN);
-            ct.returnToServer(category2);
-        }
-        if(e.getSource()== button3){
-            System.out.println("You selected category: " + category3);
-            button3.setBackground(Color.GREEN);
-            ct.returnToServer(category3);
-        }
-        if(e.getSource()== button4){
-            System.out.println("You selected category: " + category4);
-            button4.setBackground(Color.GREEN);
-            ct.returnToServer(category4);
-        }
+
+        JButton jb = new JButton();
+        jb = (JButton) e.getSource();
+        ct.returnToServer(jb.getText());
+
+
+
 
     }
 

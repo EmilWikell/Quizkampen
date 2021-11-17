@@ -6,16 +6,23 @@ package ClientLogic;/*
  */
 
 import Database.QuestionClass;
-import GUI.CategoryPanel;
-import GUI.QuestionPanel;
+import GUI.*;
 
-import java.io.*;
-import java.net.Socket;
 import javax.swing.*;
+import javax.swing.event.AncestorListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
 
-public class ClientTest {
+public class ClientTest extends JFrame implements ActionListener {
 
-    static PrintWriter out;
+    PrintWriter out;
     ObjectInputStream in;
     String theQuestion;
     String alt1a;
@@ -25,53 +32,54 @@ public class ClientTest {
 
     String toSendBackToServer = "This feedback";
     String correctAnswere;
+    Object lastObject;
 
-
-    ClientTest() throws IOException, ClassNotFoundException {
+    public ClientTest() throws ClassNotFoundException {
+        setLayout(new GridLayout(1,1));
+        setTitle(JOptionPane.showInputDialog(null, "Enter your name: "));
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         String hostName = "127.0.0.1";  //localhost
-        int portNumber = 55551;
+        int portNumber = 44444;
 
         try {
             Socket socket = new Socket(hostName, portNumber);
+
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new ObjectInputStream(socket.getInputStream());
 
-            Object informationPackFromServer = in.readObject();
-            objectInformationToStrings(informationPackFromServer);
             //TODO Bryt ut informationen från objectet till strängar för att populera spelplan
 
-//            if (informationPackFromServer instanceof QuestionClass) {
-//                JFrame jf = new JFrame();
-//                jf.add(new QuestionPanel(theQuestion, alt1a, alt2a, alt3a, alt4a));
-//                jf.pack();
-//                jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//                jf.setLocationRelativeTo(null);
-//                jf.setVisible(true);
-//
-//            }
+                while(true) {
+                    Object informationPackFromServer = in.readObject();
+                    objectInformationToStrings(informationPackFromServer);
 
-            if(informationPackFromServer instanceof QuestionClass){  // OBS! det ska vara CategoryClass!!
-                JFrame jf = new JFrame();
-                jf.add(new CategoryPanel(theQuestion, alt1a, alt2a, alt3a, alt4a));
-                jf.pack();
-                jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                jf.setLocationRelativeTo(null);
-                jf.setVisible(true);
-                jf.repaint();
-                jf.revalidate();
-           }
+                    if (informationPackFromServer instanceof QuestionClass) {
+                        getContentPane().removeAll();
+                        QuestionPanel qp = new QuestionPanel(theQuestion, alt1a, alt2a, alt3a, alt4a, out);
+                        this.add(qp);
+                        this.revalidate();
+                        this.repaint();
+                        this.pack();
+                        this.setVisible(true);
+                    }
+
+                    if (informationPackFromServer instanceof String) {  // OBS! det ska vara CategoryClass!!
+                        getContentPane().removeAll();
+                        CategoryPanel cp = new CategoryPanel(theQuestion, alt1a, alt2a, alt3a, alt4a, out);
+                        this.add(cp);
+                        this.revalidate();
+                        this.repaint();
+                        this.pack();
+                        this.setVisible(true);
+                    }
+                }
 
         }catch (Exception e){
             e.printStackTrace();
             e.getMessage();
         }
-
-    }
-
-    public static void returnToServer(String string){
-        System.out.println("we sent back info to server");
-        out.println(string);
     }
 
     public void objectInformationToStrings(Object object){
@@ -87,11 +95,11 @@ public class ClientTest {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-
         ClientTest ct = new ClientTest();
-
-
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
+    }
 }

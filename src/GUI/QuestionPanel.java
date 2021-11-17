@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 import java.util.List;
 import javax.swing.*;
@@ -31,19 +32,19 @@ public class QuestionPanel extends JPanel implements ActionListener {
     private String alt4;
     private String correctAnswer;
     private List<String> options = new ArrayList<>();
+    private PrintWriter out;
 
-    public QuestionPanel(String question, String alt1, String alt2, String alt3, String alt4) throws IOException, ClassNotFoundException {
+    public QuestionPanel(String question, String alt1, String alt2, String alt3, String alt4, PrintWriter out) throws IOException, ClassNotFoundException {
         this.question = question;
         this.alt1 = alt1;
         this.alt2 = alt2;
         this.alt3 = alt3;
         this.alt4 = alt4;
         this.correctAnswer = alt4;
+        this.out = out;
         this.options = generateListAndshuffle(alt1, alt2, alt3, alt4);
 
-        setPreferredSize(new Dimension(400, 900));
-
-        this.setPreferredSize(new Dimension(600, 1000));
+        setPreferredSize(new Dimension(400, 500));
         this.setLayout(new GridLayout(5, 1));
 
 
@@ -76,7 +77,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
             if(button1.getText() == correctAnswer){
                 System.out.println("Correct answer!");
                 button1.setBackground(Color.GREEN);
-                ct.returnToServer("CORRECT");
+                returnToServer("CORRECT");
             }
             else{
                 System.out.println("Wrong answer!");
@@ -87,7 +88,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
             if(button2.getText() == correctAnswer){
                 System.out.println("Correct answer!");
                 button2.setBackground(Color.GREEN);
-                ct.returnToServer("CORRECT");
+                returnToServer("CORRECT");
                 //removeGUI();  ???
             }
             else{
@@ -99,7 +100,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
             if(button3.getText() == correctAnswer){
                 System.out.println("Correct answer!");
                 button3.setBackground(Color.GREEN);
-                ct.returnToServer("CORRECT");
+                returnToServer("CORRECT");
             }
             else{
                 System.out.println("Wrong answer!");
@@ -109,7 +110,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
             if(button4.getText() == correctAnswer){
                 System.out.println("Correct answer!");
                 button4.setBackground(Color.GREEN);
-                ct.returnToServer("CORRECT");
+                returnToServer("CORRECT");
+                //event();
             }
             else{
                 System.out.println("Wrong answer!");
@@ -128,6 +130,10 @@ public class QuestionPanel extends JPanel implements ActionListener {
         return this.options;
     }
 
+    private void returnToServer(String string) {
+        System.out.println("we sent back info to server");
+        out.println(string);
+    }
 
 
     }

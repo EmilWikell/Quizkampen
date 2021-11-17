@@ -1,4 +1,7 @@
 import java.util.List;
+
+import DAO.DAO;
+import Database.CategoryClass;
 import Database.QuestionClass;
 
 public class GameServer implements Runnable{
@@ -8,11 +11,13 @@ public class GameServer implements Runnable{
 
     PlayerServer player1;
     PlayerServer player2;
-    DAO DAO;
+    DAO dao;
+    CategoryClass categoryHandler;
     Thread activity = new Thread(this);
 
-    public GameServer(DAO DAO, PlayerServer player1, PlayerServer player2) {
-        this.DAO = DAO;
+    public GameServer(DAO dao, PlayerServer player1, PlayerServer player2) {
+        this.dao = dao;
+        categoryHandler = new CategoryClass(this.dao);
         this.player1 = player1;
         this.player2 = player2;
         activity.start();
@@ -36,7 +41,7 @@ public class GameServer implements Runnable{
          */
         String chosenCategory = "SPORTS";
 
-        List<QuestionClass> chosenQuestions = DAO.getQuestions(amountOfQuestion, chosenCategory);
+        List<QuestionClass> chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
             for (int i = 0; i < amountOfQuestion; i++) {
                 player1.sendQuestion(chosenQuestions.get(i));
                 player1.receiveAnswer();

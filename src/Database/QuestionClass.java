@@ -1,7 +1,6 @@
 package Database;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class QuestionClass implements Serializable {
     private String question;

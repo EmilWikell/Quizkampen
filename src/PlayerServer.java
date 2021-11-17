@@ -1,3 +1,4 @@
+import Database.CategoryClass;
 import Database.QuestionClass;
 
 import java.io.*;
@@ -21,7 +22,6 @@ public class PlayerServer {
     }
     public void sendQuestion(QuestionClass question){
         try {
-            String temp = "Vad är störst?,1, 2, 3, 4";
             toClient.writeObject(question);
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,10 +39,12 @@ public class PlayerServer {
             e.printStackTrace();
         }
     }
-    public String chooseCategory() {
-        //TODO send alternatives to user(four category's), wait for database.
+    public String chooseCategory(CategoryClass categoryHandler) {
         try{
-            return fromClient.readLine();
+            toClient.writeObject(categoryHandler.getSmallListOfCategories());
+            String chosenCategory = fromClient.readLine();
+            categoryHandler.removeChosenCategory(chosenCategory);
+            return chosenCategory;
         }catch (Exception e){
             e.printStackTrace();
             System.exit(452);

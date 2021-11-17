@@ -1,3 +1,5 @@
+package DAO;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,12 +11,13 @@ public class DAO {
         new DAO();
     }
 
-    private String path = "src/questions.txt";
+    private String path = "Quizkampen/src/questions.txt";
     private List<QuestionClass> ENTERTAINMENT = new ArrayList<>();
     private List<QuestionClass> GEOGRAPHY = new ArrayList<>();
     private List<QuestionClass> SPORTS = new ArrayList<>();
     private List<QuestionClass> HISTORY = new ArrayList<>();
     private List<QuestionClass> IT = new ArrayList<>();
+    List<String> listOfCategories = new ArrayList<>();
     private BufferedReader buffIn;
  
     public DAO(){
@@ -38,6 +41,14 @@ public class DAO {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        listOfCategories.add("ENTERTAINMENT");
+        listOfCategories.add("GEOGRAPHY");
+        listOfCategories.add("SPORTS");
+        listOfCategories.add("HISTORY");
+        listOfCategories.add("IT");
+    }
+    public List<String> getListOfCategories(){
+        return listOfCategories;
     }
 
     private QuestionClass addQuestionToList(String tempLine) throws IOException {

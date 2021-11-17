@@ -1,8 +1,8 @@
-package DispatchClasses;
+package DipatchHandlers;
 
 import DAO.DAO;
+import DispatchClasses.CategoryClass;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,11 +24,6 @@ public class CategoryHandler {
     }
 
     public void removeChosenCategory(String chosenCategory){
-      //  listOfCategories.removeIf(c -> c.equals(chosenCategory)); kan ersätta foreach loopen, behöver förstå först
-        for (String c: listOfCategories) {
-            if (c.equals(chosenCategory)){
-                listOfCategories.remove(c);
-            }
-        }
+        listOfCategories.removeIf(c -> c.equals(chosenCategory));
     }
 }

@@ -1,6 +1,6 @@
 package Server;
 
-import DispatchClasses.CategoryHandler;
+import DipatchHandlers.CategoryHandler;
 import DispatchClasses.QuestionClass;
 
 import java.io.*;

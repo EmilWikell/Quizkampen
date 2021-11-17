@@ -3,7 +3,7 @@ package Server;
 import java.util.List;
 
 import DAO.DAO;
-import DispatchClasses.CategoryHandler;
+import DipatchHandlers.CategoryHandler;
 import DispatchClasses.QuestionClass;
 
 public class GameServer implements Runnable {

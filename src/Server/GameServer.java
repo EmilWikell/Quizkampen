@@ -1,12 +1,13 @@
 package Server;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import DAO.DAO;
 import DispatchClasses.CategoryClass;
 import DispatchClasses.QuestionClass;
 
-public class GameServer implements Runnable{
+public class GameServer implements Runnable {
 
     int amountOfQuestion = 3; // change later !!!!!!!!!!!!!!!!!!!!!!!!
     int amountOfRounds = 3; // change later !!!!!!!!!!!!!!!!!!!!!!!!
@@ -25,36 +26,35 @@ public class GameServer implements Runnable{
         activity.start();
     }
 
-    public void run(){
+    public void run() {
 
 
-        /*for (int j = 0; j < amountOfRounds; j++) {
-            if(j%2==0){
-                category = player1.chooseCategory();
+        for (int j = 0; j < amountOfRounds; j++) {
+
+            String chosenCategory;
+            if (j % 2 == 0) {
+                chosenCategory = player1.chooseCategory(categoryHandler);
                 //TODO player 2 waiting screen
-            }else{
-                category = player2.chooseCategory();
+            } else {
+                chosenCategory = player2.chooseCategory(categoryHandler);
                 //TODO player 1 waiting screen
             }
-            List<QuestionClass> question = new ArrayList<>();
-            for (int i = 0; i < amountOfQuestion; i++) {
-                question.add(qGenerator.generateQuestion(category));
-            }
-         */
-        String chosenCategory = "SPORTS";
 
-        List<QuestionClass> chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
+            List<QuestionClass> chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
+
+            //TODO player 2 waiting screen
             for (int i = 0; i < amountOfQuestion; i++) {
                 player1.sendQuestion(chosenQuestions.get(i));
                 player1.receiveAnswer();
-                //TODO player 2 waiting screen
             }
+
+            //TODO player 1 waiting screen
             for (int i = 0; i < amountOfQuestion; i++) {
                 player2.sendQuestion(chosenQuestions.get(i));
                 player2.receiveAnswer();
-                //TODO player 1 waiting screen
             }
             //TODO score, wait for ok
         }
         //TODO display winner
     }
+}

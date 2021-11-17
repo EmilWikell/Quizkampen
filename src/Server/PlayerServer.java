@@ -50,9 +50,9 @@ public class PlayerServer {
         }catch (Exception e){
             e.printStackTrace();
             System.exit(452);
+            return "";
+            //TODO ??
         }
-        System.exit(452);
-        return "";
     }
 
 }

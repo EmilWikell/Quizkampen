@@ -34,11 +34,11 @@ public class GameServer implements Runnable {
 
             String chosenCategory;
             if (j % 2 == 0) {
-                chosenCategory = player1.chooseCategory(categoryHandler);
                 //TODO player 2 waiting screen
+                chosenCategory = player1.chooseCategory(categoryHandler);
             } else {
-                chosenCategory = player2.chooseCategory(categoryHandler);
                 //TODO player 1 waiting screen
+                chosenCategory = player2.chooseCategory(categoryHandler);
             }
 
             List<QuestionClass> chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);

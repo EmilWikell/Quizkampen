@@ -17,6 +17,11 @@ public class DAO {
     private List<QuestionClass> SPORTS = new ArrayList<>();
     private List<QuestionClass> HISTORY = new ArrayList<>();
     private List<QuestionClass> IT = new ArrayList<>();
+    private List<QuestionClass> LITERATURE = new ArrayList<>();
+    private List<QuestionClass> ART = new ArrayList<>();
+    private List<QuestionClass> SCIENCE = new ArrayList<>();
+    private List<QuestionClass> ANIMALS = new ArrayList<>();
+    private List<QuestionClass> CAPITALS = new ArrayList<>();
     List<String> listOfCategories = new ArrayList<>();
     private BufferedReader buffIn;
  
@@ -36,6 +41,11 @@ public class DAO {
                     case "SPORTS" -> SPORTS.add(addQuestionToList(tempLine));
                     case "HISTORY" -> HISTORY.add(addQuestionToList(tempLine));
                     case "IT" -> IT.add(addQuestionToList(tempLine));
+                    case "LITERATURE" -> LITERATURE.add(addQuestionToList(tempLine));
+                    case "ART" -> ART.add(addQuestionToList(tempLine));
+                    case "SCIENCE" -> SCIENCE.add(addQuestionToList(tempLine));
+                    case "ANIMALS" -> ANIMALS.add(addQuestionToList(tempLine));
+                    case "CAPITALS" -> CAPITALS.add(addQuestionToList(tempLine));
                 }
             }
         } catch (IOException e) {
@@ -46,6 +56,11 @@ public class DAO {
         listOfCategories.add("SPORTS");
         listOfCategories.add("HISTORY");
         listOfCategories.add("IT");
+        listOfCategories.add("LITERATURE");
+        listOfCategories.add("ART");
+        listOfCategories.add("SCIENCE");
+        listOfCategories.add("ANIMALS");
+        listOfCategories.add("CAPITALS");
     }
     public List<String> getListOfCategories(){
         return listOfCategories;
@@ -84,9 +99,33 @@ public class DAO {
                 for (int i = 0; i < amountOfQuestions; i++) {
                     chosenQuestions.add(IT.get(i));
                 }
+            }case "LITERATURE" -> {
+                Collections.shuffle(LITERATURE);
+                for (int i = 0; i < amountOfQuestions; i++) {
+                    chosenQuestions.add(LITERATURE.get(i));
+                }
+            }case "ART" -> {
+                Collections.shuffle(ART);
+                for (int i = 0; i < amountOfQuestions; i++) {
+                    chosenQuestions.add(ART.get(i));
+                }
+            }case "SCIENCE" -> {
+                Collections.shuffle(SCIENCE);
+                for (int i = 0; i < amountOfQuestions; i++) {
+                    chosenQuestions.add(SCIENCE.get(i));
+                }
+            }case "ANIMALS" -> {
+                Collections.shuffle(ANIMALS);
+                for (int i = 0; i < amountOfQuestions; i++) {
+                    chosenQuestions.add(ANIMALS.get(i));
+                }
+            }case "CAPITALS" -> {
+                Collections.shuffle(CAPITALS);
+                for (int i = 0; i < amountOfQuestions; i++) {
+                    chosenQuestions.add(CAPITALS.get(i));
+                }
             }
         }
         return chosenQuestions;
     }
-
 }

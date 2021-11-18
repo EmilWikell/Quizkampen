@@ -1,46 +1,82 @@
 package GUI;
 
 
+import ClientLogic.ClientTest;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.PrintWriter;
 import javax.swing.*;
 
-public class CategoryPanel extends JPanel {
+public class CategoryPanel extends JPanel implements ActionListener {
 
 
-    CategoryPanel() {
+
+    JLabel questionLabel = new JLabel();
+    JButton button1 = new JButton();
+    JButton button2 = new JButton();
+    JButton button3 = new JButton();
+    JButton button4 = new JButton();
+
+    private String messageToChoseCategory;
+    private String category1;
+    private String category2;
+    private String category3;
+    private String category4;
+    private PrintWriter out;
+
+    public CategoryPanel(String messageToChoseCategory, String category1, String category2, String category3, String category4, PrintWriter out) throws IOException, ClassNotFoundException {
+        this.category1 = category1;
+        this.category2 = category2;
+        this.category3 = category3;
+        this.category4 = category4;
+        this.out = out;
+
         setPreferredSize(new Dimension(400, 900));
-        setLayout(new GridLayout(5, 1));
-        setVisible(true);
+        this.setPreferredSize(new Dimension(600, 1000));
+        this.setLayout(new GridLayout(5, 1));
 
-        JLabel jb = new JLabel("Hello, Chose category: ");
-        jb.setPreferredSize(new Dimension(390, 100));
-        jb.setHorizontalAlignment(JLabel.CENTER);
-        jb.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-        jb.setForeground(Color.black);
-        add(jb);
 
-        // Entertainment
-        // Geography
-        // Sports
-        // History
-        // It-Computers
-        JButton category1 = new JButton("Entertainment");
-        add(category1);
+        questionLabel.setText(messageToChoseCategory);
+        this.add(questionLabel);
 
-        JButton category2 = new JButton("Geography");
-        add(category2);
+        button1.setText(category1);
+        button1.addActionListener(this);
+        this.add(button1);
 
-        JButton category3 = new JButton("It-Computers");
-        add(category3);
+        button2.setText(category2);
+        button2.addActionListener(this);
+        this.add(button2);
 
-        JButton category4 = new JButton("History");
-        add(category4);
+        button3.setText(category3);
+        button3.addActionListener(this);
+        this.add(button3);
 
-        // JButton category5 = new JButton("Sports");
-        // add(category5);
+        button4.setText(category4);
+        button4.addActionListener(this);
+        this.add(button4);
+
+        this.setVisible(true);
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //  OBS! Tanke??? Att vi skapar en metod likt ct.returnToServer() men som är separat och returnar next Category.
+        //  Vet inte hur vi ska göra exakt men vi måste bestämma hur vi sätter nästa kategori
+        //  vi måste hitta en sätt att stänga ner och ta emot nästa panel --> protokol ändå?
+        JButton jb = new JButton();
+        jb = (JButton) e.getSource();
+        returnToServer(jb.getText());
 
     }
 
+    private void returnToServer(String string) {
+        System.out.println("we sent back info to server");
+        out.println(string);
+    }
 
 
 }

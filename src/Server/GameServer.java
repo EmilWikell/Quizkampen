@@ -65,6 +65,8 @@ public class GameServer implements Runnable {
             player1.resetMyPointsRound();
             player2.resetMyPointsRound();
         }
+        player1.sendWinningScreen();
+        player2.sendWinningScreen();
         //TODO display winner
     }
 }

@@ -7,6 +7,7 @@ import java.util.*;
 import DispatchClasses.QuestionClass;
 
 public class DAO {
+
     private String path = "src/DAO/questions.txt";
     private List<QuestionClass> ENTERTAINMENT = new ArrayList<>();
     private List<QuestionClass> GEOGRAPHY = new ArrayList<>();

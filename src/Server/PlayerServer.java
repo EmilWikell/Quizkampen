@@ -53,7 +53,7 @@ public class PlayerServer {
             e.printStackTrace();
         }
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -92,5 +92,15 @@ public class PlayerServer {
     }
     public void resetMyPointsRound(){
         scoreHandler.resetRound();
+    }
+
+    public void sendWinningScreen() {
+        int oppScore = opp.scoreHandler.getScoreTotal();
+        try {
+            toClient.writeObject(scoreHandler.getWinner(oppScore));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

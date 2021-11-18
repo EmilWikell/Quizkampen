@@ -5,10 +5,7 @@ package ClientLogic;/*
  *Comment about this project
  */
 
-import DispatchClasses.CategoryClass;
-import DispatchClasses.QuestionClass;
-import DispatchClasses.ScoreClass;
-import DispatchClasses.WaitingClass;
+import DispatchClasses.*;
 import GUI.*;
 import GUI.QuestionPanel;
 
@@ -90,6 +87,33 @@ public class ClientTest extends JFrame implements ActionListener {
                     if (informationPackFromServer instanceof WaitingClass) {
                         getContentPane().removeAll();
                         WaitingPanel jp1 = new WaitingPanel();
+                        this.add(jp1);
+                        this.revalidate();
+                        this.repaint();
+                        this.pack();
+                        this.setVisible(true);
+                    }
+                    if (informationPackFromServer instanceof WinClass) {
+                        getContentPane().removeAll();
+                        WinPanel jp1 = new WinPanel();
+                        this.add(jp1);
+                        this.revalidate();
+                        this.repaint();
+                        this.pack();
+                        this.setVisible(true);
+                    }
+                    if (informationPackFromServer instanceof LoseClass) {
+                        getContentPane().removeAll();
+                        LosePanel jp1 = new LosePanel();
+                        this.add(jp1);
+                        this.revalidate();
+                        this.repaint();
+                        this.pack();
+                        this.setVisible(true);
+                    }
+                    if (informationPackFromServer instanceof TieClass) {
+                        getContentPane().removeAll();
+                        TiePanel jp1 = new TiePanel();
                         this.add(jp1);
                         this.revalidate();
                         this.repaint();

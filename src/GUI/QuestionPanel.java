@@ -38,6 +38,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
     private String correctAnswer;
     private List<String> options = new ArrayList<>();
     private PrintWriter out;
+    private List<JButton> buttonList = new ArrayList<>();
 
     public QuestionPanel(String question, String alt1, String alt2, String alt3, String alt4, PrintWriter out) throws IOException, ClassNotFoundException {
         this.question = question;
@@ -58,6 +59,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
         for (int i = 0; i < options.size(); i++) {
             JButton button = new JButton(options.get(i));
             button.addActionListener(this);
+            add(button);
+            buttonList.add(button);
 
         }
 
@@ -89,18 +92,39 @@ public class QuestionPanel extends JPanel implements ActionListener {
         jb = (JButton) e.getSource();
 
         if(jb.getText().equals(correctAnswer)){
+            for (JButton b: buttonList) {
+                b.setEnabled(false);
+            }
             jb.setBackground(Color.GREEN);
-            timer = new Timer(3000, actionEvent -> {
-              returnToServer("CORRECT");
-          });
+            jb.setOpaque(true);
+            jb.repaint();
+            jb.revalidate();
+            returnToServer("CORRECT");
 
         }
         else{
             jb.setBackground(Color.RED);
-            timer = new Timer(3000, actionEvent -> {
-                returnToServer("FALSE");
-            });
+            jb.setOpaque(true);
+            jb.repaint();
+            jb.revalidate();
+            for (JButton b: buttonList) {
+                b.setEnabled(false);
+                if (b.getText().equals(correctAnswer)){
+                    b.setBackground(new Color(176, 252, 153));
+                    jb.setOpaque(true);
+                    jb.repaint();
+                    jb.revalidate();
+                }
+                else{
+                    b.setBackground(new Color(252, 139, 154));
+                    jb.setOpaque(true);
+                    jb.repaint();
+                    jb.revalidate();
+                }
+            }
 
+
+            returnToServer("FALSE");
         }
 
 

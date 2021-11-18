@@ -53,6 +53,12 @@ public class PlayerServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+
     }
     public String chooseCategory(CategoryHandler categoryHandler) {
         try{

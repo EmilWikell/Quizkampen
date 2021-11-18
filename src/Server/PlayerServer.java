@@ -53,7 +53,7 @@ public class PlayerServer {
             e.printStackTrace();
         }
         try {
-            Thread.sleep(1);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Thread.sleep(2325);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }

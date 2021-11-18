@@ -44,11 +44,10 @@ public class PlayerServer {
     }
     public void receiveAnswer(){
         try {
-            String s = fromClient.readLine().trim();
+            String s = fromClient.readLine();
             System.out.println(s);
             if(s.equals("CORRECT")){
-                System.out.println("We received correct answer!");
-                points += 5;
+                scoreHandler.increaseScore();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,5 +89,8 @@ public class PlayerServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void resetMyPointsRound(){
+        scoreHandler.resetRound();
     }
 }

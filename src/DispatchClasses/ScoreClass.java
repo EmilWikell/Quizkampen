@@ -20,6 +20,6 @@ public class ScoreClass implements Serializable {
 
     @Override
     public String toString() {
-        return score +","+ firstTot +","+ firstRound +","+ oppTot +","+ oppRound;
+        return score +"-"+ firstTot +"-"+  firstRound +"-"+ oppTot +"-"+ oppRound;
     }
 }

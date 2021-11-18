@@ -9,7 +9,7 @@ private int scoreThisRound = 0;
 
    public void increaseScore(){
        int scoreEarned = 0;
-       scoreEarned += 5;
+       scoreEarned += 1;
        scoreTotal += scoreEarned;
        scoreThisRound += scoreEarned;
    }
@@ -20,5 +20,8 @@ private int scoreThisRound = 0;
 
     public int getScoreThisRound() {
         return scoreThisRound;
+    }
+    public void resetRound(){
+       scoreThisRound = 0;
     }
 }

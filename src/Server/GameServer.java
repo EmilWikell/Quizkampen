@@ -9,8 +9,8 @@ import DispatchClasses.ScoreClass;
 
 public class GameServer implements Runnable {
 
-    int amountOfQuestion = 3; // change later !!!!!!!!!!!!!!!!!!!!!!!!
-    int amountOfRounds = 3; // change later !!!!!!!!!!!!!!!!!!!!!!!!
+    int amountOfQuestion = 2; // change later !!!!!!!!!!!!!!!!!!!!!!!!
+    int amountOfRounds = 2; // change later !!!!!!!!!!!!!!!!!!!!!!!!
 
     PlayerServer player1;
     PlayerServer player2;
@@ -57,8 +57,13 @@ public class GameServer implements Runnable {
 
             player1.sendScore();
             player2.sendScore();
-
-            //TODO score, wait for ok
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            player1.resetMyPointsRound();
+            player2.resetMyPointsRound();
         }
         //TODO display winner
     }

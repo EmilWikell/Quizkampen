@@ -228,11 +228,11 @@ Virtual Price Net
 Verizon Products Network
 Virtual Product Net
 Virtual Private Network
-Which mobile phone company has produced models called “StarTAC”, “V220” and “SLVR”?
-Nokia
-Ericsson
-LG
-Motorola
+What year did the first Apple iPhone launch?
+2005
+2009
+2002
+2007
 Pressing the CTRL key on a PC along with which letter of the Alphabet is a shortcut for the “Undo” command?
 C
 S
@@ -275,7 +275,7 @@ Grendel
 Heorot
 Minotaur
 This genre of fiction, in which novels like Dracula are told in letters, diary entries, newspaper clippings, and more mixed formats, came to prominence in the late 18th century.
-Belles-lettres
+Belles lettres
 Pastoral
 Bildungsroman
 Epistolary
@@ -289,14 +289,14 @@ Anne Hutchinson
 Emely Shelby
 Agnes Grey
 Hester Prynne
-Who wrote The Electric Kool-Aid Acid Test?
+Who wrote The Electric Kool Aid Acid Test?
 William S. Burroughs
 Hunter S. Thompson
 Ken Kesey
 Tom Wolfe
 Name That Book: What is the seventh and final installment in J. K. Rowling’s Harry Potter series?
 Harry Potter and the Order of the Phoenix
-Harry Potter and the Half-Blood Prince
+Harry Potter and the Half Blood Prince
 Harry Potter and the Cursed Child
 Harry Potter and the Deathly Hallows
 How many acts are in Romeo and Juliet?
@@ -320,7 +320,7 @@ Jan Van Eyk
 Pieter Breughel
 Vincent Van Gogh
 M.C. Escher
-With what painter did Jean-Michel Basquiat collaborate?
+With what painter did Jean Michel Basquiat collaborate?
 Roy Lichtenstein
 Willem de Kooning
 Claude Monet
@@ -350,7 +350,7 @@ Titian
 Michelangelo
 Raphael
 Salvador Dali
-Which of these artists made a well-known drawing of Don Quixote?
+Which of these artists made a well known drawing of Don Quixote?
 Jan van Eyck
 Rembrandt
 Pablo Picasso
@@ -368,12 +368,12 @@ Newton
 Dmitri Mendeleev
 Which is the most abundant gas in the earth's atmosphere?
 Hydrogen
-Carbon-di-oxide
+Carbon dioxide
 Helium
 Nitrogen
 Which gas evolved from paddy fields and marshes?
 Hydrogen
-Carbon-di-oxide
+Carbon dioxide
 Helium
 Methane
 Which toxic element present in automobile exhausts?
@@ -383,7 +383,7 @@ Tustin
 Lead
 Which gases cause acid rain?
 Hydrogen
-Carbon-di-oxide
+Carbon dioxide
 Helium
 Sulphur dioxide, Nitrogen oxides
 Which metal is used in the making of microchips?

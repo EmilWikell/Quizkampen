@@ -79,7 +79,7 @@ public class ClientTest extends JFrame implements ActionListener {
                     if (informationPackFromServer instanceof ScoreClass) {
                         objectInformationToStrings(informationPackFromServer);
                         getContentPane().removeAll();
-                        ScorePanel jp1 = new ScorePanel(headLine,alt1a, alt2a, alt3a, alt4a, out );
+                        ScorePanel jp1 = new ScorePanel(headLine,alt1a, alt2a, alt3a, alt4a);
                         this.add(jp1);
                         this.revalidate();
                         this.repaint();
@@ -108,7 +108,7 @@ public class ClientTest extends JFrame implements ActionListener {
         System.out.println(object.toString());
         String fullString = object.toString();
         //fullString.split(",");
-        String[] temp = fullString.split(",");
+        String[] temp = fullString.split("-");
         headLine = temp[0];
         alt1a = temp[1];
         alt2a = temp[2];

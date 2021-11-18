@@ -28,14 +28,14 @@ public class CategoryPanel extends JPanel implements ActionListener {
     private PrintWriter out;
 
     public CategoryPanel(String messageToChoseCategory, String category1, String category2, String category3, String category4, PrintWriter out) throws IOException, ClassNotFoundException {
+        this.messageToChoseCategory = messageToChoseCategory;
         this.category1 = category1;
         this.category2 = category2;
         this.category3 = category3;
         this.category4 = category4;
         this.out = out;
 
-        setPreferredSize(new Dimension(400, 900));
-        this.setPreferredSize(new Dimension(600, 1000));
+        setPreferredSize(new Dimension(400, 700));
         this.setLayout(new GridLayout(5, 1));
 
 

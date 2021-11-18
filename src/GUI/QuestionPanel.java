@@ -44,7 +44,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
         this.out = out;
         this.options = generateListAndshuffle(alt1, alt2, alt3, alt4);
 
-        setPreferredSize(new Dimension(400, 500));
+        setPreferredSize(new Dimension(400, 700));
         this.setLayout(new GridLayout(5, 1));
 
 

@@ -57,6 +57,7 @@ public class GameServer implements Runnable {
 
             player1.sendScore();
             player2.sendScore();
+
             //TODO score, wait for ok
         }
         //TODO display winner

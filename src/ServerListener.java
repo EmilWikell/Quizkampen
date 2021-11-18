@@ -7,7 +7,7 @@ public class ServerListener {
     public ServerListener(){
         DAO DAO = new DAO();
         try {
-            ServerSocket listener = new ServerSocket(55551);
+            ServerSocket listener = new ServerSocket(44444);
             while (true){
                 System.out.println("Server started");
                 PlayerServer player1 = new PlayerServer(listener.accept());

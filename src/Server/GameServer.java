@@ -1,6 +1,9 @@
 package Server;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 import DAO.DAO;
 import DipatchHandlers.CategoryHandler;
@@ -9,9 +12,8 @@ import DispatchClasses.ScoreClass;
 
 public class GameServer implements Runnable {
 
-    int amountOfQuestion = 2; // change later !!!!!!!!!!!!!!!!!!!!!!!!
-    int amountOfRounds = 2; // change later !!!!!!!!!!!!!!!!!!!!!!!!
-
+    int amountOfQuestion;
+    int amountOfRounds;
     PlayerServer player1;
     PlayerServer player2;
     DAO dao;
@@ -25,6 +27,16 @@ public class GameServer implements Runnable {
         this.player2 = player2;
         this.player1.setOpp(player2);
         this.player2.setOpp(player1);
+
+        Properties p = new Properties();
+        try {
+            p.load(new FileInputStream("src/DAO/QuestAndRounds.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        amountOfQuestion = Integer.parseInt(p.getProperty("Questions", "3"));
+        amountOfRounds = Integer.parseInt(p.getProperty("Rounds", "3"));
+
         activity.start();
     }
 

@@ -8,6 +8,7 @@ package ClientLogic;/*
 import DispatchClasses.CategoryClass;
 import DispatchClasses.QuestionClass;
 import DispatchClasses.ScoreClass;
+import DispatchClasses.WaitingClass;
 import GUI.*;
 import GUI.QuestionPanel;
 
@@ -31,8 +32,6 @@ public class ClientTest extends JFrame implements ActionListener {
     String alt4a;
 
     String toSendBackToServer = "This feedback";
-    String correctAnswere;
-    Object lastObject;
 
     public ClientTest() throws ClassNotFoundException {
         setLayout(new GridLayout(1,1));
@@ -53,7 +52,6 @@ public class ClientTest extends JFrame implements ActionListener {
 
                 while(true) {
                     Object informationPackFromServer = in.readObject();
-                    objectInformationToStrings(informationPackFromServer);
 
 
                     if (informationPackFromServer instanceof QuestionClass) {
@@ -67,7 +65,7 @@ public class ClientTest extends JFrame implements ActionListener {
                         this.setVisible(true);
                     }
 
-                    if (informationPackFromServer instanceof CategoryClass) {  // OBS! det ska vara CategoryClass!!
+                    if (informationPackFromServer instanceof CategoryClass) {
                         objectInformationToStrings(informationPackFromServer);
                         getContentPane().removeAll();
                         CategoryPanel cp = new CategoryPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
@@ -88,17 +86,16 @@ public class ClientTest extends JFrame implements ActionListener {
                         this.pack();
                         this.setVisible(true);
                     }
-                    if (informationPackFromServer instanceof String) {  // OBS! det ska vara WaitingScreen!!
+
+                    if (informationPackFromServer instanceof WaitingClass) {
                         getContentPane().removeAll();
-                        JPanel jp1 = new JPanel();
+                        WaitingPanel jp1 = new WaitingPanel();
                         this.add(jp1);
                         this.revalidate();
                         this.repaint();
                         this.pack();
                         this.setVisible(true);
                     }
-
-
                 }
 
         }catch (Exception e){

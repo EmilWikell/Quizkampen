@@ -7,9 +7,6 @@ import java.util.*;
 import DispatchClasses.QuestionClass;
 
 public class DAO {
-    public static void main(String[] args) {
-        new DAO();
-    }
 
     private String path = "Quizkampen/src/DAO/questions.txt";
     private List<QuestionClass> ENTERTAINMENT = new ArrayList<>();

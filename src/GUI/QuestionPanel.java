@@ -48,7 +48,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
         this.setLayout(new GridLayout(5, 1));
 
 
-        questionLabel.setText(question);
+        questionLabel.setText("<html>"+ this.question +"</html>");
         this.add(questionLabel);
 
         button1.setText(options.get(0));
@@ -74,7 +74,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
         //removeGUI();  ??? Hur löser vi att det ska försvinna och repaintas osv...
 
         if(e.getSource()== button1){
-            if(button1.getText() == correctAnswer){
+            if(Objects.equals(button1.getText(), correctAnswer)){
                 System.out.println("Correct answer!");
                 button1.setBackground(Color.GREEN);
                 returnToServer("CORRECT");
@@ -85,7 +85,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
         }
 
         if(e.getSource()== button2){
-            if(button2.getText() == correctAnswer){
+            if(Objects.equals(button2.getText(), correctAnswer)){
                 System.out.println("Correct answer!");
                 button2.setBackground(Color.GREEN);
                 returnToServer("CORRECT");
@@ -97,7 +97,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
         }
 
         if(e.getSource()== button3){
-            if(button3.getText() == correctAnswer){
+            if(Objects.equals(button3.getText(), correctAnswer)){
                 System.out.println("Correct answer!");
                 button3.setBackground(Color.GREEN);
                 returnToServer("CORRECT");
@@ -107,7 +107,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
             }
         }
         if(e.getSource()== button4){
-            if(button4.getText() == correctAnswer){
+            if(Objects.equals(button4.getText(), correctAnswer)){
                 System.out.println("Correct answer!");
                 button4.setBackground(Color.GREEN);
                 returnToServer("CORRECT");

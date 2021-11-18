@@ -34,22 +34,22 @@ public class GameServer implements Runnable {
 
             String chosenCategory;
             if (j % 2 == 0) {
-                //TODO player 2 waiting screen
+                player2.sendWaitScreen();
                 chosenCategory = player1.chooseCategory(categoryHandler);
             } else {
-                //TODO player 1 waiting screen
+                player1.sendWaitScreen();
                 chosenCategory = player2.chooseCategory(categoryHandler);
             }
 
             List<QuestionClass> chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
 
-            //TODO player 2 waiting screen
+            player2.sendWaitScreen();
             for (int i = 0; i < amountOfQuestion; i++) {
                 player1.sendQuestion(chosenQuestions.get(i));
                 player1.receiveAnswer();
             }
 
-            //TODO player 1 waiting screen
+            player1.sendWaitScreen();
             for (int i = 0; i < amountOfQuestion; i++) {
                 player2.sendQuestion(chosenQuestions.get(i));
                 player2.receiveAnswer();

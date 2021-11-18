@@ -4,6 +4,7 @@ import DipatchHandlers.CategoryHandler;
 import DipatchHandlers.ScoreHandler;
 import DispatchClasses.QuestionClass;
 import DispatchClasses.ScoreClass;
+import DispatchClasses.WaitingClass;
 
 import java.io.*;
 import java.net.Socket;
@@ -14,10 +15,12 @@ public class PlayerServer {
     private BufferedReader fromClient;
     int points;
     ScoreHandler scoreHandler;
+    WaitingClass wait;
     private PlayerServer opp;
 
     public PlayerServer(Socket socket) {
         scoreHandler = new ScoreHandler();
+        wait = new WaitingClass();
         points = 0;
         this.socket = socket;
         try {
@@ -71,6 +74,13 @@ public class PlayerServer {
                     scoreHandler.getScoreThisRound(),
                     opp.scoreHandler.getScoreTotal(),
                     opp.scoreHandler.getScoreThisRound()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void sendWaitScreen(){
+        try {
+            toClient.writeObject(wait);
         } catch (IOException e) {
             e.printStackTrace();
         }

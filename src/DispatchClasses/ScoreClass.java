@@ -1,6 +1,8 @@
 package DispatchClasses;
 
-public class ScoreClass {
+import java.io.Serializable;
+
+public class ScoreClass implements Serializable {
 
     String score;
     private int firstTot;

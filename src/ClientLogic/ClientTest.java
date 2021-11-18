@@ -5,7 +5,8 @@ package ClientLogic;/*
  *Comment about this project
  */
 
-import Database.QuestionClass;
+import DispatchClasses.CategoryClass;
+import DispatchClasses.QuestionClass;
 import GUI.*;
 import DispatchClasses.QuestionClass;
 import GUI.QuestionPanel;
@@ -69,7 +70,7 @@ public class ClientTest extends JFrame implements ActionListener {
                         this.setVisible(true);
                     }
 
-                    if (informationPackFromServer instanceof String) {  // OBS! det ska vara CategoryClass!!
+                    if (informationPackFromServer instanceof CategoryClass) {  // OBS! det ska vara CategoryClass!!
                         objectInformationToStrings(informationPackFromServer);
                         getContentPane().removeAll();
                         CategoryPanel cp = new CategoryPanel(theQuestion, alt1a, alt2a, alt3a, alt4a, out);

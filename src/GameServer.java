@@ -41,7 +41,6 @@ public class GameServer implements Runnable{
                 System.out.println("sending from Gameserver.."+i);
                 player1.sendQuestion(chosenQuestions.get(i));
                 player1.receiveAnswer();
-
                 //TODO player 2 waiting screen
             }
             for (int i = 0; i < amountOfQuestion; i++) {

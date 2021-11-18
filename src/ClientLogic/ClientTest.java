@@ -55,7 +55,9 @@ public class ClientTest extends JFrame implements ActionListener {
                     Object informationPackFromServer = in.readObject();
                     objectInformationToStrings(informationPackFromServer);
 
+
                     if (informationPackFromServer instanceof QuestionClass) {
+                        objectInformationToStrings(informationPackFromServer);
                         getContentPane().removeAll();
                         QuestionPanel qp = new QuestionPanel(theQuestion, alt1a, alt2a, alt3a, alt4a, out);
                         this.add(qp);
@@ -66,6 +68,7 @@ public class ClientTest extends JFrame implements ActionListener {
                     }
 
                     if (informationPackFromServer instanceof String) {  // OBS! det ska vara CategoryClass!!
+                        objectInformationToStrings(informationPackFromServer);
                         getContentPane().removeAll();
                         CategoryPanel cp = new CategoryPanel(theQuestion, alt1a, alt2a, alt3a, alt4a, out);
                         this.add(cp);
@@ -74,6 +77,31 @@ public class ClientTest extends JFrame implements ActionListener {
                         this.pack();
                         this.setVisible(true);
                     }
+
+                    if (informationPackFromServer instanceof String) {  // OBS! det ska vara ScoreScreen!!
+                        // Parametrar 1, dinaPointsDennaRuna 2, DinaPoängTotalt,
+                        // 3, MotståndarePointsDennaRunda 4, motStåndareTotalt
+                        // 5, Rubrik ScoreScreen
+                        objectInformationToStrings(informationPackFromServer);
+                        getContentPane().removeAll();
+                        JPanel jp1 = new JPanel();
+                        this.add(jp1);
+                        this.revalidate();
+                        this.repaint();
+                        this.pack();
+                        this.setVisible(true);
+                    }
+                    if (informationPackFromServer instanceof String) {  // OBS! det ska vara WaitingScreen!!
+                        getContentPane().removeAll();
+                        JPanel jp1 = new JPanel();
+                        this.add(jp1);
+                        this.revalidate();
+                        this.repaint();
+                        this.pack();
+                        this.setVisible(true);
+                    }
+
+
                 }
 
         }catch (Exception e){

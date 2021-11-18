@@ -1,6 +1,9 @@
 package DipatchHandlers;
 
-import DispatchClasses.ScoreClass;
+import DispatchClasses.LoseClass;
+import DispatchClasses.TieClass;
+import DispatchClasses.WinClass;
+
 public class ScoreHandler{
 
 private int scoreTotal = 0;
@@ -23,5 +26,17 @@ private int scoreThisRound = 0;
     }
     public void resetRound(){
        scoreThisRound = 0;
+    }
+
+    public Object getWinner(int oppScore) {
+       if(scoreTotal > oppScore){
+           return new WinClass();
+       }
+       else if(scoreTotal == oppScore){
+           return new TieClass();
+       }
+       else{
+           return new LoseClass();
+       }
     }
 }

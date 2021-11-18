@@ -20,16 +20,8 @@ import ClientLogic.ClientTest;
 
 public class QuestionPanel extends JPanel implements ActionListener {
 
-    ClientTest ct;
     JLabel questionLabel = new JLabel();
-//    JButton button1 = new JButton();
-//    JButton button2 = new JButton();
-//    JButton button3 = new JButton();
-//    JButton button4 = new JButton();
 
-    private Timer timer;
-    private int second;
-    private int timesIsup;
     private String question;
     private String alt1;
     private String alt2;

@@ -13,6 +13,8 @@ import java.io.PrintWriter;
 import java.util.*;
 import java.util.List;
 import javax.swing.*;
+import javax.swing.Timer;
+
 import ClientLogic.ClientTest;
 
 
@@ -20,11 +22,14 @@ public class QuestionPanel extends JPanel implements ActionListener {
 
     ClientTest ct;
     JLabel questionLabel = new JLabel();
-    JButton button1 = new JButton();
-    JButton button2 = new JButton();
-    JButton button3 = new JButton();
-    JButton button4 = new JButton();
+//    JButton button1 = new JButton();
+//    JButton button2 = new JButton();
+//    JButton button3 = new JButton();
+//    JButton button4 = new JButton();
 
+    private Timer timer;
+    private int second;
+    private int timesIsup;
     private String question;
     private String alt1;
     private String alt2;
@@ -47,76 +52,103 @@ public class QuestionPanel extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(400, 700));
         this.setLayout(new GridLayout(5, 1));
 
-
         questionLabel.setText("<html>"+ this.question +"</html>");
         this.add(questionLabel);
 
-        button1.setText(options.get(0));
-        button1.addActionListener(this);
-        this.add(button1);
+        for (int i = 0; i < options.size(); i++) {
+            JButton button = new JButton(options.get(i));
+            button.addActionListener(this);
 
-        button2.setText(options.get(1));
-        button2.addActionListener(this);
-        this.add(button2);
+        }
 
-        button3.setText(options.get(2));
-        button3.addActionListener(this);
-        this.add(button3);
-
-        button4.setText(options.get(3));
-        button4.addActionListener(this);
-        this.add(button4);
         this.setVisible(true);
+
+//        button1.setText(options.get(0));
+//        button1.addActionListener(this);
+//        this.add(button1);
+//
+//        button2.setText(options.get(1));
+//        button2.addActionListener(this);
+//        this.add(button2);
+//
+//        button3.setText(options.get(2));
+//        button3.addActionListener(this);
+//        this.add(button3);
+//
+//        button4.setText(options.get(3));
+//        button4.addActionListener(this);
+//        this.add(button4);
+
 }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //removeGUI();  ??? Hur löser vi att det ska försvinna och repaintas osv...
 
-        if(e.getSource()== button1){
-            if(Objects.equals(button1.getText(), correctAnswer)){
-                System.out.println("Correct answer!");
-                button1.setBackground(Color.GREEN);
-                returnToServer("CORRECT");
-            }
-            else{
-                System.out.println("Wrong answer!");
-            }
+        JButton jb;
+        jb = (JButton) e.getSource();
+
+        if(jb.getText().equals(correctAnswer)){
+            jb.setBackground(Color.GREEN);
+            timer = new Timer(3000, actionEvent -> {
+              returnToServer("CORRECT");
+          });
+
+        }
+        else{
+            jb.setBackground(Color.RED);
+            timer = new Timer(3000, actionEvent -> {
+                returnToServer("FALSE");
+            });
+
         }
 
-        if(e.getSource()== button2){
-            if(Objects.equals(button2.getText(), correctAnswer)){
-                System.out.println("Correct answer!");
-                button2.setBackground(Color.GREEN);
-                returnToServer("CORRECT");
-                //removeGUI();  ???
-            }
-            else{
-                System.out.println("Wrong answer!");
-            }
-        }
 
-        if(e.getSource()== button3){
-            if(Objects.equals(button3.getText(), correctAnswer)){
-                System.out.println("Correct answer!");
-                button3.setBackground(Color.GREEN);
-                returnToServer("CORRECT");
-            }
-            else{
-                System.out.println("Wrong answer!");
-            }
-        }
-        if(e.getSource()== button4){
-            if(Objects.equals(button4.getText(), correctAnswer)){
-                System.out.println("Correct answer!");
-                button4.setBackground(Color.GREEN);
-                returnToServer("CORRECT");
-                //event();
-            }
-            else{
-                System.out.println("Wrong answer!");
-            }
-        }
+
+//        if(e.getSource()== button1){
+//            if(Objects.equals(button1.getText(), correctAnswer)){
+//                System.out.println("Correct answer!");
+//                button1.setBackground(Color.GREEN);
+//                returnToServer("CORRECT");
+//            }
+//            else{
+//                System.out.println("Wrong answer!");
+//            }
+//        }
+//
+//        if(e.getSource()== button2){
+//            if(Objects.equals(button2.getText(), correctAnswer)){
+//                System.out.println("Correct answer!");
+//                button2.setBackground(Color.GREEN);
+//                returnToServer("CORRECT");
+//                //removeGUI();  ???
+//            }
+//            else{
+//                System.out.println("Wrong answer!");
+//            }
+//        }
+//
+//        if(e.getSource()== button3){
+//            if(Objects.equals(button3.getText(), correctAnswer)){
+//                System.out.println("Correct answer!");
+//                button3.setBackground(Color.GREEN);
+//                returnToServer("CORRECT");
+//            }
+//            else{
+//                System.out.println("Wrong answer!");
+//            }
+//        }
+//        if(e.getSource()== button4){
+//            if(Objects.equals(button4.getText(), correctAnswer)){
+//                System.out.println("Correct answer!");
+//                button4.setBackground(Color.GREEN);
+//                returnToServer("CORRECT");
+//                //event();
+//            }
+//            else{
+//                System.out.println("Wrong answer!");
+//            }
+//        }
 
     }
 

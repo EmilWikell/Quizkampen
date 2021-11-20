@@ -30,7 +30,7 @@ public class ClientTest extends JFrame implements ActionListener {
 
     String toSendBackToServer = "This feedback";
 
-    public ClientTest() throws ClassNotFoundException {
+    public ClientTest() {
         setLayout(new GridLayout(1,1));
         setTitle(JOptionPane.showInputDialog(null, "Enter your name: "));
         setLocationRelativeTo(null);
@@ -41,86 +41,87 @@ public class ClientTest extends JFrame implements ActionListener {
 
         try {
             Socket socket = new Socket(hostName, portNumber);
-
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new ObjectInputStream(socket.getInputStream());
 
-            //TODO Bryt ut informationen från objectet till strängar för att populera spelplan
+            getContentPane().removeAll();
+            WaitingPanel startingGame = new WaitingPanel();
+            this.add(startingGame);
+            this.revalidate();
+            this.repaint();
+            this.pack();
+            this.setVisible(true);
 
-                while(true) {
-                    Object informationPackFromServer = in.readObject();
+            while(true) {
+                Object informationPackFromServer = in.readObject();
 
-
-                    if (informationPackFromServer instanceof QuestionClass) {
-                        objectInformationToStrings(informationPackFromServer);
-                        getContentPane().removeAll();
-                        QuestionPanel qp = new QuestionPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
-                        this.add(qp);
-                        this.revalidate();
-                        this.repaint();
-                        this.pack();
-                        this.setVisible(true);
-                    }
-
-                    if (informationPackFromServer instanceof CategoryClass) {
-                        objectInformationToStrings(informationPackFromServer);
-                        getContentPane().removeAll();
-                        CategoryPanel cp = new CategoryPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
-                        this.add(cp);
-                        this.revalidate();
-                        this.repaint();
-                        this.pack();
-                        this.setVisible(true);
-                    }
-
-                    if (informationPackFromServer instanceof ScoreClass) {
-                        objectInformationToStrings(informationPackFromServer);
-                        getContentPane().removeAll();
-                        ScorePanel jp1 = new ScorePanel(headLine,alt1a, alt2a, alt3a, alt4a);
-                        this.add(jp1);
-                        this.revalidate();
-                        this.repaint();
-                        this.pack();
-                        this.setVisible(true);
-                    }
-
-                    if (informationPackFromServer instanceof WaitingClass) {
-                        getContentPane().removeAll();
-                        WaitingPanel jp1 = new WaitingPanel();
-                        this.add(jp1);
-                        this.revalidate();
-                        this.repaint();
-                        this.pack();
-                        this.setVisible(true);
-                    }
-                    if (informationPackFromServer instanceof WinClass) {
-                        getContentPane().removeAll();
-                        WinPanel jp1 = new WinPanel();
-                        this.add(jp1);
-                        this.revalidate();
-                        this.repaint();
-                        this.pack();
-                        this.setVisible(true);
-                    }
-                    if (informationPackFromServer instanceof LoseClass) {
-                        getContentPane().removeAll();
-                        LosePanel jp1 = new LosePanel();
-                        this.add(jp1);
-                        this.revalidate();
-                        this.repaint();
-                        this.pack();
-                        this.setVisible(true);
-                    }
-                    if (informationPackFromServer instanceof TieClass) {
-                        getContentPane().removeAll();
-                        TiePanel jp1 = new TiePanel();
-                        this.add(jp1);
-                        this.revalidate();
-                        this.repaint();
-                        this.pack();
-                        this.setVisible(true);
-                    }
+                if (informationPackFromServer instanceof QuestionClass) {
+                    objectInformationToStrings(informationPackFromServer);
+                    getContentPane().removeAll();
+                    QuestionPanel qp = new QuestionPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
+                    this.add(qp);
+                    this.revalidate();
+                    this.repaint();
+                    this.pack();
+                    this.setVisible(true);
                 }
+                if (informationPackFromServer instanceof CategoryClass) {
+                    objectInformationToStrings(informationPackFromServer);
+                    getContentPane().removeAll();
+                    CategoryPanel cp = new CategoryPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
+                    this.add(cp);
+                    this.revalidate();
+                    this.repaint();
+                    this.pack();
+                    this.setVisible(true);
+                }
+                if (informationPackFromServer instanceof ScoreClass) {
+                    objectInformationToStrings(informationPackFromServer);
+                    getContentPane().removeAll();
+                    ScorePanel jp1 = new ScorePanel(headLine,alt1a, alt2a, alt3a, alt4a);
+                    this.add(jp1);
+                    this.revalidate();
+                    this.repaint();
+                    this.pack();
+                    this.setVisible(true);
+                }
+                if (informationPackFromServer instanceof WaitingClass) {
+                    getContentPane().removeAll();
+                    WaitingPanel jp1 = new WaitingPanel();
+                    this.add(jp1);
+                    this.revalidate();
+                    this.repaint();
+                    this.pack();
+                    this.setVisible(true);
+                }
+                if (informationPackFromServer instanceof WinClass) {
+                    getContentPane().removeAll();
+                    WinPanel jp1 = new WinPanel();
+                    this.add(jp1);
+                    this.revalidate();
+                    this.repaint();
+                    this.pack();
+                    this.setVisible(true);
+                }
+                if (informationPackFromServer instanceof LoseClass) {
+                    getContentPane().removeAll();
+                    LosePanel jp1 = new LosePanel();
+                    this.add(jp1);
+                    this.revalidate();
+                    this.repaint();
+                    this.pack();
+                    this.setVisible(true);
+                }
+                if (informationPackFromServer instanceof TieClass) {
+                    getContentPane().removeAll();
+                    TiePanel jp1 = new TiePanel();
+                    this.add(jp1);
+                    this.revalidate();
+                    this.repaint();
+                    this.pack();
+                    this.setVisible(true);
+                }
+            }
 
         }catch (Exception e){
             e.printStackTrace();
@@ -140,7 +141,7 @@ public class ClientTest extends JFrame implements ActionListener {
         alt4a = temp[4];
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) {
         ClientTest ct = new ClientTest();
     }
 

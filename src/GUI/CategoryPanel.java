@@ -14,11 +14,11 @@ public class CategoryPanel extends JPanel implements ActionListener {
 
 
 
-    JLabel questionLabel = new JLabel();
-    JButton button1 = new JButton();
-    JButton button2 = new JButton();
-    JButton button3 = new JButton();
-    JButton button4 = new JButton();
+    JLabel questionLabel ;
+    Button button1 = new Button();
+    Button button2 = new Button();
+    Button button3 = new Button();
+    Button button4 = new Button();
 
     private String messageToChoseCategory;
     private String category1;

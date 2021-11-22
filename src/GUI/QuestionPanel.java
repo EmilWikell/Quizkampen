@@ -21,7 +21,6 @@ import ClientLogic.ClientTest;
 public class QuestionPanel extends JPanel implements ActionListener {
 
     JLabel questionLabel = new JLabel();
-
     private String question;
     private String alt1;
     private String alt2;
@@ -30,7 +29,9 @@ public class QuestionPanel extends JPanel implements ActionListener {
     private String correctAnswer;
     private List<String> options = new ArrayList<>();
     private PrintWriter out;
-    private List<JButton> buttonList = new ArrayList<>();
+    private List<Button> buttonList = new ArrayList<>();
+    private JProgressBar bar = new JProgressBar(0, 20);
+    private Timer timer ;
 
     public QuestionPanel(String question, String alt1, String alt2, String alt3, String alt4, PrintWriter out) throws IOException, ClassNotFoundException {
         this.question = question;
@@ -43,60 +44,48 @@ public class QuestionPanel extends JPanel implements ActionListener {
         this.options = generateListAndshuffle(alt1, alt2, alt3, alt4);
 
         setPreferredSize(new Dimension(400, 700));
-        this.setLayout(new GridLayout(5, 1));
+        this.setLayout(new GridLayout(6, 1));
 
         questionLabel.setText("<html>"+ this.question +"</html>");
         this.add(questionLabel);
 
         for (int i = 0; i < options.size(); i++) {
-            JButton button = new JButton(options.get(i));
+            Button button = new Button();
+            button.setText(options.get(i));
             button.addActionListener(this);
             add(button);
             buttonList.add(button);
-
         }
-
+        bar.setValue(20);
+        bar.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,12)) ;
+        bar.setForeground(Color.red);
+        bar.setOpaque(true);
+        add(bar) ;
+        fill();
         this.setVisible(true);
-
-//        button1.setText(options.get(0));
-//        button1.addActionListener(this);
-//        this.add(button1);
-//
-//        button2.setText(options.get(1));
-//        button2.addActionListener(this);
-//        this.add(button2);
-//
-//        button3.setText(options.get(2));
-//        button3.addActionListener(this);
-//        this.add(button3);
-//
-//        button4.setText(options.get(3));
-//        button4.addActionListener(this);
-//        this.add(button4);
-
-}
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //removeGUI();  ??? Hur löser vi att det ska försvinna och repaintas osv...
-
-        JButton jb;
-        jb = (JButton) e.getSource();
+        Button jb;
+        jb = (Button) e.getSource();
 
         if(jb.getText().equals(correctAnswer)){
             for (JButton b: buttonList) {
                 b.setEnabled(false);
             }
             jb.setBackground(Color.GREEN);
+            timer.stop();
             jb.setOpaque(true);
             jb.repaint();
             jb.revalidate();
             returnToServer("CORRECT");
-
         }
         else{
             jb.setBackground(Color.RED);
             jb.setOpaque(true);
+            timer.stop();
             jb.repaint();
             jb.revalidate();
             for (JButton b: buttonList) {
@@ -114,58 +103,8 @@ public class QuestionPanel extends JPanel implements ActionListener {
                     jb.revalidate();
                 }
             }
-
-
             returnToServer("FALSE");
         }
-
-
-
-//        if(e.getSource()== button1){
-//            if(Objects.equals(button1.getText(), correctAnswer)){
-//                System.out.println("Correct answer!");
-//                button1.setBackground(Color.GREEN);
-//                returnToServer("CORRECT");
-//            }
-//            else{
-//                System.out.println("Wrong answer!");
-//            }
-//        }
-//
-//        if(e.getSource()== button2){
-//            if(Objects.equals(button2.getText(), correctAnswer)){
-//                System.out.println("Correct answer!");
-//                button2.setBackground(Color.GREEN);
-//                returnToServer("CORRECT");
-//                //removeGUI();  ???
-//            }
-//            else{
-//                System.out.println("Wrong answer!");
-//            }
-//        }
-//
-//        if(e.getSource()== button3){
-//            if(Objects.equals(button3.getText(), correctAnswer)){
-//                System.out.println("Correct answer!");
-//                button3.setBackground(Color.GREEN);
-//                returnToServer("CORRECT");
-//            }
-//            else{
-//                System.out.println("Wrong answer!");
-//            }
-//        }
-//        if(e.getSource()== button4){
-//            if(Objects.equals(button4.getText(), correctAnswer)){
-//                System.out.println("Correct answer!");
-//                button4.setBackground(Color.GREEN);
-//                returnToServer("CORRECT");
-//                //event();
-//            }
-//            else{
-//                System.out.println("Wrong answer!");
-//            }
-//        }
-
     }
 
 
@@ -178,13 +117,33 @@ public class QuestionPanel extends JPanel implements ActionListener {
         return this.options;
     }
 
+    public void fill() {
+        ActionListener listener = new ActionListener() {
+            int counter = 20;
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                counter--;
+                bar.setValue(counter);
+                if (counter == 0) {
+                    for (Button b: buttonList) {
+                        b.setEnabled(false);
+                    }
+                    returnToServer("False");
+                    timer.stop();
+                }
+            }
+        };
+        timer = new Timer(1000, listener);
+        timer.start();
+    }
+
     private void returnToServer(String string) {
         System.out.println("we sent back info to server");
         out.println(string);
     }
 
 
-    }
+}
 
 
 

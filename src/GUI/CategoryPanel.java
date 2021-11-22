@@ -1,8 +1,6 @@
 package GUI;
 
 
-import ClientLogic.ClientTest;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +12,7 @@ public class CategoryPanel extends JPanel implements ActionListener {
 
 
 
-    JLabel questionLabel ;
+    JLabel categoryLabel;
     Button button1 = new Button();
     Button button2 = new Button();
     Button button3 = new Button();
@@ -38,13 +36,14 @@ public class CategoryPanel extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(400, 700));
         this.setLayout(new GridLayout(5, 1));
 
-        questionLabel = new JLabel("<html><div style='text-align: center;'>" +
+        categoryLabel = new JLabel("<html><div style='text-align: center;'>" +
                 messageToChoseCategory + "</div></html>") ;
-        questionLabel.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,30)) ;
-        questionLabel.setBackground(Color.lightGray.brighter());
-        questionLabel.setForeground(new Color (103, 51, 150)) ;
-        questionLabel.setOpaque(true);
-        this.add(questionLabel);
+        categoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        categoryLabel.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,30)) ;
+        categoryLabel.setBackground(Color.lightGray.brighter());
+        categoryLabel.setForeground(new Color (103, 51, 150)) ;
+        categoryLabel.setOpaque(true);
+        this.add(categoryLabel);
 
         button1.setText(category1);
         button1.addActionListener(this);

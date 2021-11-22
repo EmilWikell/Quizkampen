@@ -38,8 +38,12 @@ public class CategoryPanel extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(400, 700));
         this.setLayout(new GridLayout(5, 1));
 
-
-        questionLabel.setText(messageToChoseCategory);
+        questionLabel = new JLabel("<html><div style='text-align: center;'>" +
+                messageToChoseCategory + "</div></html>") ;
+        questionLabel.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,30)) ;
+        questionLabel.setBackground(Color.lightGray.brighter());
+        questionLabel.setForeground(new Color (103, 51, 150)) ;
+        questionLabel.setOpaque(true);
         this.add(questionLabel);
 
         button1.setText(category1);

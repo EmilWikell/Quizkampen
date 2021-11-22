@@ -8,17 +8,13 @@ package ClientLogic;/*
 import DispatchClasses.*;
 import GUI.*;
 import GUI.QuestionPanel;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ClientTest extends JFrame implements ActionListener {
+public class ClientTest extends JFrame{
 
     PrintWriter out;
     ObjectInputStream in;
@@ -27,12 +23,12 @@ public class ClientTest extends JFrame implements ActionListener {
     String alt2a;
     String alt3a;
     String alt4a;
-
-    String toSendBackToServer = "This feedback";
+    String myName;
 
     public ClientTest() {
         setLayout(new GridLayout(1,1));
         setTitle(JOptionPane.showInputDialog(null, "Enter your name: "));
+        this.myName = getTitle();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -43,14 +39,11 @@ public class ClientTest extends JFrame implements ActionListener {
             Socket socket = new Socket(hostName, portNumber);
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new ObjectInputStream(socket.getInputStream());
+            out.println(getTitle());
 
             getContentPane().removeAll();
             WaitingPanel startingGame = new WaitingPanel();
-            this.add(startingGame);
-            this.revalidate();
-            this.repaint();
-            this.pack();
-            this.setVisible(true);
+            paintDisplay(startingGame);
 
             while(true) {
                 Object informationPackFromServer = in.readObject();
@@ -58,68 +51,40 @@ public class ClientTest extends JFrame implements ActionListener {
                 if (informationPackFromServer instanceof QuestionClass) {
                     objectInformationToStrings(informationPackFromServer);
                     getContentPane().removeAll();
-                    QuestionPanel qp = new QuestionPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
-                    this.add(qp);
-                    this.revalidate();
-                    this.repaint();
-                    this.pack();
-                    this.setVisible(true);
+                    QuestionPanel panel = new QuestionPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
+                    paintDisplay(panel);
                 }
                 if (informationPackFromServer instanceof CategoryClass) {
                     objectInformationToStrings(informationPackFromServer);
                     getContentPane().removeAll();
-                    CategoryPanel cp = new CategoryPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
-                    this.add(cp);
-                    this.revalidate();
-                    this.repaint();
-                    this.pack();
-                    this.setVisible(true);
+                    CategoryPanel panel = new CategoryPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
+                    paintDisplay(panel);
                 }
                 if (informationPackFromServer instanceof ScoreClass) {
                     objectInformationToStrings(informationPackFromServer);
                     getContentPane().removeAll();
-                    ScorePanel jp1 = new ScorePanel(headLine,alt1a, alt2a, alt3a, alt4a);
-                    this.add(jp1);
-                    this.revalidate();
-                    this.repaint();
-                    this.pack();
-                    this.setVisible(true);
+                    ScorePanel panel = new ScorePanel(myName,headLine,alt1a, alt2a, alt3a, alt4a);
+                    paintDisplay(panel);
                 }
                 if (informationPackFromServer instanceof WaitingClass) {
                     getContentPane().removeAll();
-                    WaitingPanel jp1 = new WaitingPanel();
-                    this.add(jp1);
-                    this.revalidate();
-                    this.repaint();
-                    this.pack();
-                    this.setVisible(true);
+                    WaitingPanel panel = new WaitingPanel();
+                    paintDisplay(panel);
                 }
                 if (informationPackFromServer instanceof WinClass) {
                     getContentPane().removeAll();
-                    WinPanel jp1 = new WinPanel();
-                    this.add(jp1);
-                    this.revalidate();
-                    this.repaint();
-                    this.pack();
-                    this.setVisible(true);
+                    WinPanel panel = new WinPanel();
+                    paintDisplay(panel);
                 }
                 if (informationPackFromServer instanceof LoseClass) {
                     getContentPane().removeAll();
-                    LosePanel jp1 = new LosePanel();
-                    this.add(jp1);
-                    this.revalidate();
-                    this.repaint();
-                    this.pack();
-                    this.setVisible(true);
+                    LosePanel panel = new LosePanel();
+                    paintDisplay(panel);
                 }
                 if (informationPackFromServer instanceof TieClass) {
                     getContentPane().removeAll();
-                    TiePanel jp1 = new TiePanel();
-                    this.add(jp1);
-                    this.revalidate();
-                    this.repaint();
-                    this.pack();
-                    this.setVisible(true);
+                    TiePanel panel = new TiePanel();
+                    paintDisplay(panel);
                 }
             }
 
@@ -132,7 +97,6 @@ public class ClientTest extends JFrame implements ActionListener {
     public void objectInformationToStrings(Object object){
         System.out.println(object.toString());
         String fullString = object.toString();
-        //fullString.split(",");
         String[] temp = fullString.split("-");
         headLine = temp[0];
         alt1a = temp[1];
@@ -140,13 +104,15 @@ public class ClientTest extends JFrame implements ActionListener {
         alt3a = temp[3];
         alt4a = temp[4];
     }
+    private void paintDisplay(JPanel panel){
+        this.add(panel);
+        this.revalidate();
+        this.repaint();
+        this.pack();
+        this.setVisible(true);
+    }
 
     public static void main(String[] args) {
         ClientTest ct = new ClientTest();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 }

@@ -41,6 +41,8 @@ public class GameServer implements Runnable {
     }
 
     public void run() {
+        player1.setName();
+        player2.setName();
 
         for (int j = 0; j < amountOfRounds; j++) {
 

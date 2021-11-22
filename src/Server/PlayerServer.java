@@ -10,6 +10,7 @@ import java.io.*;
 import java.net.Socket;
 
 public class PlayerServer {
+    String name;
     private Socket socket;
     private ObjectOutput toClient;
     private BufferedReader fromClient;
@@ -31,6 +32,13 @@ public class PlayerServer {
         }
     }
 
+    public void setName() {
+        try {
+            this.name = fromClient.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void setOpp(PlayerServer opp){
         this.opp = opp;
     }
@@ -75,7 +83,7 @@ public class PlayerServer {
 
     public void sendScore() {
         try {
-            toClient.writeObject(new ScoreClass(scoreHandler.getScoreTotal(),
+            toClient.writeObject(new ScoreClass(opp.name, scoreHandler.getScoreTotal(),
                     scoreHandler.getScoreThisRound(),
                     opp.scoreHandler.getScoreTotal(),
                     opp.scoreHandler.getScoreThisRound()));

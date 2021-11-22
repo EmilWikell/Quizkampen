@@ -57,9 +57,6 @@ public class QuestionPanel extends JPanel implements ActionListener {
             buttonList.add(button);
         }
         bar.setValue(20);
-        bar.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,12)) ;
-        bar.setForeground(Color.red);
-        bar.setOpaque(true);
         add(bar) ;
         fill();
         this.setVisible(true);

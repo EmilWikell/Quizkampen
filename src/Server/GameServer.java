@@ -81,6 +81,5 @@ public class GameServer implements Runnable {
         }
         player1.sendWinningScreen();
         player2.sendWinningScreen();
-        //TODO display winner
     }
 }

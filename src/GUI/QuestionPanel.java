@@ -47,6 +47,10 @@ public class QuestionPanel extends JPanel implements ActionListener {
         this.setLayout(new GridLayout(6, 1));
 
         questionLabel.setText("<html>"+ this.question +"</html>");
+        questionLabel.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,30)) ;
+        questionLabel.setBackground(Color.lightGray.brighter());
+        questionLabel.setForeground(new Color (103, 51, 150)) ;
+        questionLabel.setOpaque(true);
         this.add(questionLabel);
 
         for (int i = 0; i < options.size(); i++) {

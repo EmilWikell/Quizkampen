@@ -77,17 +77,7 @@ public class ClientTest extends JFrame{
                     }
                     if (informationPackFromServer instanceof WinClass) {
                         getContentPane().removeAll();
-                        WinPanel panel = new WinPanel();
-                        paintDisplay(panel);
-                    }
-                    if (informationPackFromServer instanceof LoseClass) {
-                        getContentPane().removeAll();
-                        LosePanel panel = new LosePanel();
-                        paintDisplay(panel);
-                    }
-                    if (informationPackFromServer instanceof TieClass) {
-                        getContentPane().removeAll();
-                        TiePanel panel = new TiePanel();
+                        WinPanel panel = new WinPanel(informationPackFromServer);
                         paintDisplay(panel);
                     }
                     if (informationPackFromServer instanceof SurrenderClass) {

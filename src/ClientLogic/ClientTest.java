@@ -86,6 +86,11 @@ public class ClientTest extends JFrame{
                     TiePanel panel = new TiePanel();
                     paintDisplay(panel);
                 }
+                if (informationPackFromServer instanceof SurrenderClass) {
+                    getContentPane().removeAll();
+                    SurrenderPanel panel = new SurrenderPanel();
+                    paintDisplay(panel);
+                }
             }
 
         }catch (Exception e){

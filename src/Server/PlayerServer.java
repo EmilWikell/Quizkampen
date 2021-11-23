@@ -2,12 +2,11 @@ package Server;
 
 import DipatchHandlers.CategoryHandler;
 import DipatchHandlers.ScoreHandler;
-import DispatchClasses.QuestionClass;
-import DispatchClasses.ScoreClass;
-import DispatchClasses.WaitingClass;
+import DispatchClasses.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class PlayerServer {
     String name;
@@ -28,6 +27,7 @@ public class PlayerServer {
             toClient = new ObjectOutputStream(socket.getOutputStream());
             fromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         }catch(Exception e){
+            System.out.println("vi är på skivare");
             e.printStackTrace();
         }
     }
@@ -43,22 +43,15 @@ public class PlayerServer {
         this.opp = opp;
     }
 
-    public void sendQuestion(QuestionClass question){
-        try {
-            toClient.writeObject(question);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void sendQuestion(QuestionClass question) throws IOException {
+        toClient.writeObject(question);
     }
-    public void receiveAnswer(){
-        try {
-            String s = fromClient.readLine();
-            System.out.println(s);
-            if(s.equals("CORRECT")){
-                scoreHandler.increaseScore();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void receiveAnswer() throws IOException {
+        String s = null;
+        s = fromClient.readLine();
+        System.out.println(s);
+        if(s.equals("CORRECT")){
+            scoreHandler.increaseScore();
         }
         try {
             Thread.sleep(2325);
@@ -67,18 +60,13 @@ public class PlayerServer {
         }
 
     }
-    public String chooseCategory(CategoryHandler categoryHandler) {
-        try{
+    public String chooseCategory(CategoryHandler categoryHandler) throws IOException {
+
             toClient.writeObject(categoryHandler.getSmallListOfCategories());
             String chosenCategory = fromClient.readLine();
             categoryHandler.removeChosenCategory(chosenCategory);
             return chosenCategory;
-        }catch (Exception e){
-            e.printStackTrace();
-            System.exit(452);
-            return "";
-            //TODO ??
-        }
+
     }
 
     public void sendScore() {
@@ -109,6 +97,14 @@ public class PlayerServer {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    public void sendSurrender(){
+        try {
+            toClient.writeObject(new SurrenderClass());
+        } catch (IOException e) {
+            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
 }

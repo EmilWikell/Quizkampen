@@ -12,6 +12,7 @@ import DispatchClasses.ScoreClass;
 
 public class GameServer implements Runnable {
 
+    Boolean stillRunning = true;
     int amountOfQuestion;
     int amountOfRounds;
     PlayerServer player1;
@@ -44,23 +45,48 @@ public class GameServer implements Runnable {
         player1.setName();
         player2.setName();
 
-        for (int j = 0; j < amountOfRounds; j++) {
+        for (int j = 0; j < amountOfRounds && stillRunning; j++) {
 
-            String chosenCategory;
+            String chosenCategory = null;
             if (j % 2 == 0) {
                 player2.sendWaitScreen();
-                chosenCategory = player1.chooseCategory(categoryHandler);
+                try {
+                    chosenCategory = player1.chooseCategory(categoryHandler);
+                } catch (IOException e) {
+                    player2.sendSurrender();
+                    activity.interrupt();
+                }
             } else {
                 player1.sendWaitScreen();
-                chosenCategory = player2.chooseCategory(categoryHandler);
+                try {
+                    chosenCategory = player2.chooseCategory(categoryHandler);
+                } catch (IOException e) {
+                    player1.sendSurrender();
+                    activity.interrupt();
+                }
             }
 
             List<QuestionClass> chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
 
             if (j % 2 == 0) {
-               whosTurn(player1, player2, chosenQuestions);
+                try {
+                    whosTurn(player1, player2, chosenQuestions);
+                }catch (IOException e){
+                    player2.sendSurrender();
+                    activity.interrupt();
+                    stillRunning = false;
+                    break;
+                }
+
             } else {
-                whosTurn(player2, player1, chosenQuestions);
+                try{
+                    whosTurn(player2, player1, chosenQuestions);
+                }catch (IOException e){
+                player1.sendSurrender();
+                activity.interrupt();
+                stillRunning = false;
+                break;
+                }
             }
 
 
@@ -74,15 +100,19 @@ public class GameServer implements Runnable {
             player1.resetMyPointsRound();
             player2.resetMyPointsRound();
         }
-        player1.sendWinningScreen();
-        player2.sendWinningScreen();
+        if (stillRunning){
+            player1.sendWinningScreen();
+            player2.sendWinningScreen();
+        }
     }
 
-    private void whosTurn(PlayerServer playingFirst, PlayerServer waitingFirst, List<QuestionClass> chosenQuestions ) {
+    private void whosTurn(PlayerServer playingFirst, PlayerServer waitingFirst,
+                          List<QuestionClass> chosenQuestions ) throws  IOException{
         waitingFirst.sendWaitScreen();
         for (int i = 0; i < amountOfQuestion; i++) {
-            playingFirst.sendQuestion(chosenQuestions.get(i));
-            playingFirst.receiveAnswer();
+                playingFirst.sendQuestion(chosenQuestions.get(i));
+                playingFirst.receiveAnswer();
+
         }
 
         playingFirst.sendWaitScreen();

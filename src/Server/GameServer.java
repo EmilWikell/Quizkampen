@@ -57,17 +57,12 @@ public class GameServer implements Runnable {
 
             List<QuestionClass> chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
 
-            player2.sendWaitScreen();
-            for (int i = 0; i < amountOfQuestion; i++) {
-                player1.sendQuestion(chosenQuestions.get(i));
-                player1.receiveAnswer();
+            if (j % 2 == 0) {
+               whosTurn(player1, player2, chosenQuestions);
+            } else {
+                whosTurn(player2, player1, chosenQuestions);
             }
 
-            player1.sendWaitScreen();
-            for (int i = 0; i < amountOfQuestion; i++) {
-                player2.sendQuestion(chosenQuestions.get(i));
-                player2.receiveAnswer();
-            }
 
             player1.sendScore();
             player2.sendScore();
@@ -82,5 +77,19 @@ public class GameServer implements Runnable {
         player1.sendWinningScreen();
         player2.sendWinningScreen();
         //TODO display winner
+    }
+
+    private void whosTurn(PlayerServer playingFirst, PlayerServer waitingFirst, List<QuestionClass> chosenQuestions ) {
+        waitingFirst.sendWaitScreen();
+        for (int i = 0; i < amountOfQuestion; i++) {
+            playingFirst.sendQuestion(chosenQuestions.get(i));
+            playingFirst.receiveAnswer();
+        }
+
+        playingFirst.sendWaitScreen();
+        for (int i = 0; i < amountOfQuestion; i++) {
+            waitingFirst.sendQuestion(chosenQuestions.get(i));
+            waitingFirst.receiveAnswer();
+        }
     }
 }

@@ -87,6 +87,9 @@ public class PlayerServer {
     public void resetMyPointsRound(){
         scoreHandler.resetRound();
     }
+    public void resetMyPointsTotal(){
+        scoreHandler.resetTotal();
+    }
 
     public void sendWinningScreen() {
         int oppScore = opp.scoreHandler.getScoreTotal();

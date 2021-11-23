@@ -19,6 +19,7 @@ public class GameServer implements Runnable {
     DAO dao;
     CategoryHandler categoryHandler;
     Thread activity = new Thread(this);
+    boolean gameRunning = true;
 
     public GameServer(DAO dao, PlayerServer player1, PlayerServer player2) {
         this.dao = dao;
@@ -44,46 +45,61 @@ public class GameServer implements Runnable {
         player1.setName();
         player2.setName();
 
-        for (int j = 0; j < amountOfRounds && stillRunning; j++) {
+        while (gameRunning) {
+            for (int j = 0; j < amountOfRounds && stillRunning; j++) {
 
-            String chosenCategory;
-            try {
-                if (j % 2 == 0) {
-                    chosenCategory = getCategoryFromClient(player1, player2);
-                } else {
-                    chosenCategory = getCategoryFromClient(player2, player1);
+                String chosenCategory;
+                try {
+                    if (j % 2 == 0) {
+                        chosenCategory = getCategoryFromClient(player1, player2);
+                    } else {
+                        chosenCategory = getCategoryFromClient(player2, player1);
+                    }
+                } catch (StopGameException e) {
+                    break;
                 }
-            }catch (StopGameException e){
-                break;
-            }
 
-            List<QuestionClass> chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
+                List<QuestionClass> chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
 
-            try {
-                if (j % 2 == 0) {
+                try {
+                    if (j % 2 == 0) {
 
-                    sendQuestionAndWaitScreen(player1,player2,chosenQuestions);
-                    sendQuestionAndWaitScreen(player2, player1, chosenQuestions);
+                        sendQuestionAndWaitScreen(player1, player2, chosenQuestions);
+                        sendQuestionAndWaitScreen(player2, player1, chosenQuestions);
 
-                } else {
-                    sendQuestionAndWaitScreen(player2, player1, chosenQuestions);
-                    sendQuestionAndWaitScreen(player1,player2,chosenQuestions);
+                    } else {
+                        sendQuestionAndWaitScreen(player2, player1, chosenQuestions);
+                        sendQuestionAndWaitScreen(player1, player2, chosenQuestions);
+                    }
+                } catch (StopGameException e) {
+                    break;
                 }
-            }catch (StopGameException e){
-                break;
+
+                player1.sendScore();
+                player2.sendScore();
+
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                player1.resetMyPointsRound();
+                player2.resetMyPointsRound();
             }
-
-            player1.sendScore();
-            player2.sendScore();
-
-            try {Thread.sleep(5000);} catch (InterruptedException e) {e.printStackTrace();}
-
-            player1.resetMyPointsRound();
-            player2.resetMyPointsRound();
-        }
-        if (stillRunning){
-            player1.sendWinningScreen();
-            player2.sendWinningScreen();
+            if (stillRunning) {
+                player1.sendWinningScreen();
+                player2.sendWinningScreen();
+                player1.resetMyPointsTotal();
+                player2.resetMyPointsTotal();
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                gameRunning = false;
+            }
         }
     }
 

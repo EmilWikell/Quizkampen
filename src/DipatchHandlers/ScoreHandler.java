@@ -27,6 +27,9 @@ private int scoreThisRound = 0;
     public void resetRound(){
        scoreThisRound = 0;
     }
+    public void resetTotal(){
+       scoreTotal = 0;
+   }
 
     public Object getWinner(int oppScore) {
        if(scoreTotal > oppScore){

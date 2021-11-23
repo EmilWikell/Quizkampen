@@ -69,7 +69,6 @@ public class QuestionPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //removeGUI();  ??? Hur löser vi att det ska försvinna och repaintas osv...
         Button jb;
         jb = (Button) e.getSource();
 

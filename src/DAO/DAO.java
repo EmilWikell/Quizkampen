@@ -21,14 +21,14 @@ public class DAO {
     private List<QuestionClass> CAPITALS = new ArrayList<>();
     List<String> listOfCategories = new ArrayList<>();
     private BufferedReader buffIn;
- 
-    public DAO(){
+
+    public DAO() {
         String tempLine;
-        String currentCategory ="";
+        String currentCategory = "";
         try {
             buffIn = new BufferedReader(new FileReader(path));
-            while ((tempLine = buffIn.readLine()) != null){
-                if(tempLine.charAt(0) == '!'){
+            while ((tempLine = buffIn.readLine()) != null) {
+                if (tempLine.charAt(0) == '!') {
                     currentCategory = tempLine.substring(1);
                     tempLine = buffIn.readLine();
                 }
@@ -59,7 +59,8 @@ public class DAO {
         listOfCategories.add("ANIMALS");
         listOfCategories.add("CAPITALS");
     }
-    public List<String> getListOfCategories(){
+
+    public List<String> getListOfCategories() {
         return listOfCategories;
     }
 
@@ -67,61 +68,28 @@ public class DAO {
         return new QuestionClass(tempLine, buffIn.readLine(), buffIn.readLine(), buffIn.readLine(), buffIn.readLine());
     }
 
-    public List<QuestionClass> getQuestions(int amountOfQuestions,String currentCategory){
+    public List<QuestionClass> getQuestions(int amountOfQuestions, String currentCategory) {
         List<QuestionClass> chosenQuestions = new ArrayList<>();
-
         switch (currentCategory) {
-            case "ENTERTAINMENT" -> {
-                Collections.shuffle(ENTERTAINMENT);
-                for (int i = 0; i < amountOfQuestions; i++) {
-                    chosenQuestions.add(ENTERTAINMENT.get(i));
-                }
-            }case "GEOGRAPHY" -> {
-                Collections.shuffle(GEOGRAPHY);
-                for (int i = 0; i < amountOfQuestions; i++) {
-                    chosenQuestions.add(GEOGRAPHY.get(i));
-                }
-            }case "SPORTS" -> {
-                Collections.shuffle(SPORTS);
-                for (int i = 0; i < amountOfQuestions; i++) {
-                    chosenQuestions.add(SPORTS.get(i));
-                }
-            }case "HISTORY" -> {
-                Collections.shuffle(HISTORY);
-                for (int i = 0; i < amountOfQuestions; i++) {
-                    chosenQuestions.add(HISTORY.get(i));
-                }
-            }case "IT" -> {
-                Collections.shuffle(IT);
-                for (int i = 0; i < amountOfQuestions; i++) {
-                    chosenQuestions.add(IT.get(i));
-                }
-            }case "LITERATURE" -> {
-                Collections.shuffle(LITERATURE);
-                for (int i = 0; i < amountOfQuestions; i++) {
-                    chosenQuestions.add(LITERATURE.get(i));
-                }
-            }case "ART" -> {
-                Collections.shuffle(ART);
-                for (int i = 0; i < amountOfQuestions; i++) {
-                    chosenQuestions.add(ART.get(i));
-                }
-            }case "SCIENCE" -> {
-                Collections.shuffle(SCIENCE);
-                for (int i = 0; i < amountOfQuestions; i++) {
-                    chosenQuestions.add(SCIENCE.get(i));
-                }
-            }case "ANIMALS" -> {
-                Collections.shuffle(ANIMALS);
-                for (int i = 0; i < amountOfQuestions; i++) {
-                    chosenQuestions.add(ANIMALS.get(i));
-                }
-            }case "CAPITALS" -> {
-                Collections.shuffle(CAPITALS);
-                for (int i = 0; i < amountOfQuestions; i++) {
-                    chosenQuestions.add(CAPITALS.get(i));
-                }
-            }
+            case "ENTERTAINMENT" ->createList(ENTERTAINMENT, chosenQuestions,amountOfQuestions);
+            case "GEOGRAPHY" -> createList(GEOGRAPHY, chosenQuestions,amountOfQuestions);
+            case "SPORTS" -> createList(SPORTS, chosenQuestions,amountOfQuestions);
+            case "HISTORY" -> createList(HISTORY, chosenQuestions,amountOfQuestions);
+            case "IT" -> createList(IT, chosenQuestions,amountOfQuestions);
+            case "LITERATURE" -> createList(LITERATURE, chosenQuestions,amountOfQuestions);
+            case "ART" -> createList(ART, chosenQuestions,amountOfQuestions);
+            case "SCIENCE" -> createList(SCIENCE, chosenQuestions,amountOfQuestions);
+            case "ANIMALS" -> createList(ANIMALS, chosenQuestions,amountOfQuestions);
+            case "CAPITALS" -> createList(CAPITALS, chosenQuestions,amountOfQuestions);
+        }
+        return chosenQuestions;
+    }
+
+    private List<QuestionClass> createList(List<QuestionClass> currentList,
+                                           List<QuestionClass> chosenQuestions, int amountOfQuestions) {
+        Collections.shuffle(currentList);
+        for (int i = 0; i < amountOfQuestions; i++) {
+            chosenQuestions.add(currentList.get(i));
         }
         return chosenQuestions;
     }

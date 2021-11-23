@@ -24,78 +24,84 @@ public class ClientTest extends JFrame{
     String alt3a;
     String alt4a;
     String myName;
+    boolean gameRunning;
 
     public ClientTest() {
-        setLayout(new GridLayout(1,1));
-        setTitle(JOptionPane.showInputDialog(null, "Enter your name: "));
-        this.myName = getTitle();
+        setLayout(new GridLayout(1, 1));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         String hostName = "127.0.0.1";  //localhost
         int portNumber = 44444;
 
-        try {
-            Socket socket = new Socket(hostName, portNumber);
-            out = new PrintWriter(socket.getOutputStream(), true);
-            in = new ObjectInputStream(socket.getInputStream());
-            out.println(getTitle());
-
+        while (true) {
             getContentPane().removeAll();
-            WaitingPanel startingGame = new WaitingPanel();
-            paintDisplay(startingGame);
+            setTitle(JOptionPane.showInputDialog(null, "Enter your name: "));
+            this.myName = getTitle();
 
-            while(true) {
-                Object informationPackFromServer = in.readObject();
+            try {
+                Socket socket = new Socket(hostName, portNumber);
+                out = new PrintWriter(socket.getOutputStream(), true);
+                in = new ObjectInputStream(socket.getInputStream());
+                out.println(getTitle());
 
-                if (informationPackFromServer instanceof QuestionClass) {
-                    objectInformationToStrings(informationPackFromServer);
-                    getContentPane().removeAll();
-                    QuestionPanel panel = new QuestionPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
-                    paintDisplay(panel);
+                getContentPane().removeAll();
+                WaitingPanel startingGame = new WaitingPanel();
+                paintDisplay(startingGame);
+                gameRunning = true;
+                while (gameRunning) {
+                    Object informationPackFromServer = in.readObject();
+
+                    if (informationPackFromServer instanceof QuestionClass) {
+                        objectInformationToStrings(informationPackFromServer);
+                        getContentPane().removeAll();
+                        QuestionPanel panel = new QuestionPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
+                        paintDisplay(panel);
+                    }
+                    if (informationPackFromServer instanceof CategoryClass) {
+                        objectInformationToStrings(informationPackFromServer);
+                        getContentPane().removeAll();
+                        CategoryPanel panel = new CategoryPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
+                        paintDisplay(panel);
+                    }
+                    if (informationPackFromServer instanceof ScoreClass) {
+                        objectInformationToStrings(informationPackFromServer);
+                        getContentPane().removeAll();
+                        ScorePanel panel = new ScorePanel(myName, headLine, alt1a, alt2a, alt3a, alt4a);
+                        paintDisplay(panel);
+                    }
+                    if (informationPackFromServer instanceof WaitingClass) {
+                        getContentPane().removeAll();
+                        WaitingPanel panel = new WaitingPanel();
+                        paintDisplay(panel);
+                    }
+                    if (informationPackFromServer instanceof WinClass) {
+                        getContentPane().removeAll();
+                        WinPanel panel = new WinPanel();
+                        paintDisplay(panel);
+                    }
+                    if (informationPackFromServer instanceof LoseClass) {
+                        getContentPane().removeAll();
+                        LosePanel panel = new LosePanel();
+                        paintDisplay(panel);
+                    }
+                    if (informationPackFromServer instanceof TieClass) {
+                        getContentPane().removeAll();
+                        TiePanel panel = new TiePanel();
+                        paintDisplay(panel);
+                    }
+                    if (informationPackFromServer instanceof SurrenderClass) {
+                        getContentPane().removeAll();
+                        SurrenderPanel panel = new SurrenderPanel();
+                        paintDisplay(panel);
+                        Thread.sleep(3000);
+                        gameRunning = false;
+                    }
                 }
-                if (informationPackFromServer instanceof CategoryClass) {
-                    objectInformationToStrings(informationPackFromServer);
-                    getContentPane().removeAll();
-                    CategoryPanel panel = new CategoryPanel(headLine, alt1a, alt2a, alt3a, alt4a, out);
-                    paintDisplay(panel);
-                }
-                if (informationPackFromServer instanceof ScoreClass) {
-                    objectInformationToStrings(informationPackFromServer);
-                    getContentPane().removeAll();
-                    ScorePanel panel = new ScorePanel(myName,headLine,alt1a, alt2a, alt3a, alt4a);
-                    paintDisplay(panel);
-                }
-                if (informationPackFromServer instanceof WaitingClass) {
-                    getContentPane().removeAll();
-                    WaitingPanel panel = new WaitingPanel();
-                    paintDisplay(panel);
-                }
-                if (informationPackFromServer instanceof WinClass) {
-                    getContentPane().removeAll();
-                    WinPanel panel = new WinPanel();
-                    paintDisplay(panel);
-                }
-                if (informationPackFromServer instanceof LoseClass) {
-                    getContentPane().removeAll();
-                    LosePanel panel = new LosePanel();
-                    paintDisplay(panel);
-                }
-                if (informationPackFromServer instanceof TieClass) {
-                    getContentPane().removeAll();
-                    TiePanel panel = new TiePanel();
-                    paintDisplay(panel);
-                }
-                if (informationPackFromServer instanceof SurrenderClass) {
-                    getContentPane().removeAll();
-                    SurrenderPanel panel = new SurrenderPanel();
-                    paintDisplay(panel);
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getMessage();
             }
-
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getMessage();
         }
     }
 

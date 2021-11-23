@@ -2,11 +2,13 @@ package Server;
 
 import DipatchHandlers.CategoryHandler;
 import DipatchHandlers.ScoreHandler;
-import DispatchClasses.*;
+import DispatchClasses.QuestionClass;
+import DispatchClasses.ScoreClass;
+import DispatchClasses.SurrenderClass;
+import DispatchClasses.WaitingClass;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.SocketException;
 
 public class PlayerServer {
     String name;
@@ -47,7 +49,7 @@ public class PlayerServer {
         toClient.writeObject(question);
     }
     public void receiveAnswer() throws IOException {
-        String s = null;
+        String s;
         s = fromClient.readLine();
         System.out.println(s);
         if(s.equals("CORRECT")){
@@ -79,12 +81,8 @@ public class PlayerServer {
             e.printStackTrace();
         }
     }
-    public void sendWaitScreen(){
-        try {
+    public void sendWaitScreen() throws IOException{
             toClient.writeObject(wait);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
     public void resetMyPointsRound(){
         scoreHandler.resetRound();
@@ -104,7 +102,6 @@ public class PlayerServer {
             toClient.writeObject(new SurrenderClass());
         } catch (IOException e) {
             e.printStackTrace();
-            Thread.currentThread().interrupt();
         }
     }
 }

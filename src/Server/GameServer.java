@@ -35,8 +35,8 @@ public class GameServer implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        amountOfQuestion = Integer.parseInt(p.getProperty("Questions", "3"));
-        amountOfRounds = Integer.parseInt(p.getProperty("Rounds", "3"));
+        amountOfQuestion = Integer.parseInt(p.getProperty("Questions"));
+        amountOfRounds = Integer.parseInt(p.getProperty("Rounds"));
 
         activity.start();
     }

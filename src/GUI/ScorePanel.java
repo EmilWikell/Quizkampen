@@ -36,43 +36,6 @@ public class ScorePanel extends JPanel {
         setPreferredSize(new Dimension(400, 700));
         this.setLayout(new GridLayout(5, 2));
 
-        /*headLabel.setText("Score");
-        headLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(headLabel);
-        empty.setHorizontalAlignment(SwingConstants.RIGHT);
-        this.add(empty);
-
-        lblMyTot.setHorizontalAlignment(SwingConstants.CENTER);
-        lblMyTot.setText(myName + "  total:");
-        this.add(lblMyTot);
-        myTot.setText(this.category1);
-        myTot.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(myTot);
-
-        lblMyRound.setHorizontalAlignment(SwingConstants.CENTER);
-        lblMyRound.setText(myName + "  round:");
-        this.add(lblMyRound);
-        myRound.setText(this.category2);
-        myRound.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(myRound);
-
-        lblOppTot.setHorizontalAlignment(SwingConstants.CENTER);
-        lblOppTot.setText(oppName + "  total:");
-        this.add(lblOppTot);
-        oppTot.setText(this.category3);
-        oppTot.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(oppTot);
-
-        lblOppRound.setHorizontalAlignment(SwingConstants.CENTER);
-        lblOppRound.setText(oppName + "  round:");
-        this.add(lblOppRound);
-        oppRound.setText(this.category4);
-        oppRound.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(oppRound);
-
-
-        this.setVisible(true);
-    }*/
         headLabel.setText("Score");
         headLabel.setHorizontalAlignment(SwingConstants.CENTER);
         setBackgroundForeground(headLabel, new Color (103, 51, 150), Color.WHITE);

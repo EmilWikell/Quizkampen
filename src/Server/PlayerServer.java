@@ -45,10 +45,10 @@ public class PlayerServer {
         this.opp = opp;
     }
 
-    public void sendQuestion(QuestionClass question) throws IOException {
+    public void sendQuestion(QuestionClass question) throws IOException,NullPointerException {
         toClient.writeObject(question);
     }
-    public void receiveAnswer() throws IOException {
+    public void receiveAnswer() throws IOException,NullPointerException {
         String s;
         s = fromClient.readLine();
         System.out.println(s);
@@ -62,7 +62,7 @@ public class PlayerServer {
         }
 
     }
-    public String chooseCategory(CategoryHandler categoryHandler) throws IOException {
+    public String chooseCategory(CategoryHandler categoryHandler) throws IOException, NullPointerException {
 
             toClient.writeObject(categoryHandler.getSmallListOfCategories());
             String chosenCategory = fromClient.readLine();
@@ -81,7 +81,7 @@ public class PlayerServer {
             e.printStackTrace();
         }
     }
-    public void sendWaitScreen() throws IOException{
+    public void sendWaitScreen() throws IOException,NullPointerException{
             toClient.writeObject(wait);
     }
     public void resetMyPointsRound(){

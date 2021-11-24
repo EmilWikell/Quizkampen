@@ -68,7 +68,7 @@ public class DAO {
         return new QuestionClass(tempLine, buffIn.readLine(), buffIn.readLine(), buffIn.readLine(), buffIn.readLine());
     }
 
-    public List<QuestionClass> getQuestions(int amountOfQuestions, String currentCategory) {
+    public List<QuestionClass> getQuestions(int amountOfQuestions, String currentCategory) throws IOException,NullPointerException{
         List<QuestionClass> chosenQuestions = new ArrayList<>();
         switch (currentCategory) {
             case "ENTERTAINMENT" ->createList(ENTERTAINMENT, chosenQuestions,amountOfQuestions);

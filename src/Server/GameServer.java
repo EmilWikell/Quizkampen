@@ -52,6 +52,7 @@ public class GameServer implements Runnable {
                 try {
                     if (j % 2 == 0) {
                         chosenCategory = getCategoryFromClient(player1, player2);
+
                     } else {
                         chosenCategory = getCategoryFromClient(player2, player1);
                     }
@@ -59,7 +60,23 @@ public class GameServer implements Runnable {
                     break;
                 }
 
-                List<QuestionClass> chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
+                List<QuestionClass> chosenQuestions;
+                if (j% 2 ==0){
+                    try {
+                       chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
+                    }
+                    catch (IOException | NullPointerException e){
+                        stopGame(player2);
+                        break;
+                    }
+                }else{
+                    try{
+                        chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
+                    }catch (IOException | NullPointerException e){
+                        stopGame(player1);
+                        break;
+                    }
+                }
 
                 try {
                     if (j % 2 == 0) {
@@ -106,13 +123,13 @@ public class GameServer implements Runnable {
     private String getCategoryFromClient(PlayerServer choosing, PlayerServer waiting) throws StopGameException {
         try {
             waiting.sendWaitScreen();
-        } catch (IOException e) {
+        } catch (IOException  | NullPointerException e) {
             stopGame(choosing);
             throw new StopGameException();
         }
         try {
             return  choosing.chooseCategory(categoryHandler);
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             stopGame(waiting);
             throw new StopGameException();
         }
@@ -122,16 +139,21 @@ public class GameServer implements Runnable {
                                            List<QuestionClass> chosenQuestions) throws StopGameException {
         try {
             waiting.sendWaitScreen();
-        }catch (IOException e){
+        }catch (IOException  | NullPointerException e){
             stopGame(playing);
             throw new StopGameException();
         }
         try {
             for (int i = 0; i < amountOfQuestion; i++) {
                 playing.sendQuestion(chosenQuestions.get(i));
-                playing.receiveAnswer();
+                try {
+                    playing.receiveAnswer();
+                } catch (IOException  | NullPointerException e) {
+                    stopGame(waiting);
+                    throw new StopGameException();
+                }
             }
-        }catch (IOException e){
+        }catch (IOException  | NullPointerException e){
             stopGame(waiting);
             throw new StopGameException();
         }

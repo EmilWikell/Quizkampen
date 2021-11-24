@@ -4,13 +4,15 @@ import java.io.Serializable;
 
 public class ScoreClass implements Serializable {
 
+    String oppName;
     String score;
     private int firstTot;
     private int firstRound;
     private int oppTot;
     private int oppRound;
 
-    public ScoreClass(int firstTot, int firstRound, int oppTot, int oppRound) {
+    public ScoreClass(String oppName, int firstTot, int firstRound, int oppTot, int oppRound) {
+        this.oppName = oppName;
         score = "Score";
         this.firstTot = firstTot;
         this.firstRound = firstRound;
@@ -20,6 +22,6 @@ public class ScoreClass implements Serializable {
 
     @Override
     public String toString() {
-        return score +"-"+ firstTot +"-"+  firstRound +"-"+ oppTot +"-"+ oppRound;
+        return oppName + "-" + firstTot +"-"+  firstRound +"-"+ oppTot +"-"+ oppRound;
     }
 }

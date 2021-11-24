@@ -2,5 +2,5 @@ package DispatchClasses;
 
 import java.io.Serializable;
 
-public class LoseClass implements Serializable {
+public class SurrenderClass implements Serializable {
 }

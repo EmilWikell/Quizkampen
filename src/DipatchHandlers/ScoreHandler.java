@@ -1,7 +1,5 @@
 package DipatchHandlers;
 
-import DispatchClasses.LoseClass;
-import DispatchClasses.TieClass;
 import DispatchClasses.WinClass;
 
 public class ScoreHandler{
@@ -27,16 +25,21 @@ private int scoreThisRound = 0;
     public void resetRound(){
        scoreThisRound = 0;
     }
+    public void resetTotal(){
+       scoreTotal = 0;
+   }
 
     public Object getWinner(int oppScore) {
+       String condition;
        if(scoreTotal > oppScore){
-           return new WinClass();
+           condition = "You Won";
        }
        else if(scoreTotal == oppScore){
-           return new TieClass();
+           condition = "Game Tied";
        }
        else{
-           return new LoseClass();
+           condition = "You Lost";
        }
+       return new WinClass(condition);
     }
 }

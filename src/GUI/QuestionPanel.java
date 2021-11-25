@@ -1,9 +1,4 @@
-package GUI;/*
- *Created by: Tom Ganemo
- *Date: YYYY-MM-DD
- *Project name
- *Comment about this project
- */
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,13 +1,13 @@
 package Server;
 
+import DAO.DAO;
+import DipatchHandlers.CategoryHandler;
+import DispatchClasses.QuestionClass;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-
-import DAO.DAO;
-import DipatchHandlers.CategoryHandler;
-import DispatchClasses.QuestionClass;
 
 public class GameServer implements Runnable {
 
@@ -47,43 +47,36 @@ public class GameServer implements Runnable {
 
         while (gameRunning) {
             for (int j = 0; j < amountOfRounds && stillRunning; j++) {
-
                 String chosenCategory;
                 try {
                     if (j % 2 == 0) {
                         chosenCategory = getCategoryFromClient(player1, player2);
-
                     } else {
                         chosenCategory = getCategoryFromClient(player2, player1);
                     }
                 } catch (StopGameException e) {
                     break;
                 }
-
                 List<QuestionClass> chosenQuestions;
-                if (j% 2 ==0){
+                if (j % 2 == 0) {
                     try {
-                       chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
-                    }
-                    catch (IOException | NullPointerException e){
+                        chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
+                    } catch (IOException | NullPointerException e) {
                         stopGame(player2);
                         break;
                     }
-                }else{
-                    try{
+                } else {
+                    try {
                         chosenQuestions = dao.getQuestions(amountOfQuestion, chosenCategory);
-                    }catch (IOException | NullPointerException e){
+                    } catch (IOException | NullPointerException e) {
                         stopGame(player1);
                         break;
                     }
                 }
-
                 try {
                     if (j % 2 == 0) {
-
                         sendQuestionAndWaitScreen(player1, player2, chosenQuestions);
                         sendQuestionAndWaitScreen(player2, player1, chosenQuestions);
-
                     } else {
                         sendQuestionAndWaitScreen(player2, player1, chosenQuestions);
                         sendQuestionAndWaitScreen(player1, player2, chosenQuestions);
@@ -91,7 +84,6 @@ public class GameServer implements Runnable {
                 } catch (StopGameException e) {
                     break;
                 }
-
                 player1.sendScore();
                 player2.sendScore();
 
@@ -114,8 +106,6 @@ public class GameServer implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }else {
-                gameRunning = false;
             }
         }
     }

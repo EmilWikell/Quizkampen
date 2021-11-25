@@ -1,12 +1,12 @@
 package GUI;
 
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.swing.*;
 
 public class CategoryPanel extends JPanel implements ActionListener {
 
@@ -25,7 +25,7 @@ public class CategoryPanel extends JPanel implements ActionListener {
     private String category4;
     private PrintWriter out;
 
-    public CategoryPanel(String messageToChoseCategory, String category1, String category2, String category3, String category4, PrintWriter out) throws IOException, ClassNotFoundException {
+    public CategoryPanel(String messageToChoseCategory, String category1, String category2, String category3, String category4, PrintWriter out) {
         this.messageToChoseCategory = messageToChoseCategory;
         this.category1 = category1;
         this.category2 = category2;
@@ -74,7 +74,6 @@ public class CategoryPanel extends JPanel implements ActionListener {
     }
 
     private void returnToServer(String string) {
-        System.out.println("we sent back info to server");
         out.println(string);
     }
 

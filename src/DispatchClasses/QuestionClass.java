@@ -16,21 +16,6 @@ public class QuestionClass implements Serializable {
         this.altThree = altThree;
         this.answer = answer;
     }
-    public String getQuestion() {
-        return question;
-    }
-    public String getAltOne() {
-        return altOne;
-    }
-    public String getAltTwo() {
-        return altTwo;
-    }
-    public String getAltThree() {
-        return altThree;
-    }
-    public String getAnswer() {
-        return answer;
-    }
 
     @Override
     public String toString(){

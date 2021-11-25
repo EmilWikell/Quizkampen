@@ -7,7 +7,7 @@ package ClientLogic;/*
 
 import DispatchClasses.*;
 import GUI.*;
-import GUI.QuestionPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.ObjectInputStream;
@@ -90,13 +90,11 @@ public class ClientTest extends JFrame{
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                e.getMessage();
             }
         }
     }
 
     public void objectInformationToStrings(Object object){
-        System.out.println(object.toString());
         String fullString = object.toString();
         String[] temp = fullString.split("-");
         headLine = temp[0];

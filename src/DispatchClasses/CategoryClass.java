@@ -6,7 +6,7 @@ public class CategoryClass implements Serializable {
     String categories = "Choose category";
 
     public void addToList(String string){
-        categories += "-" + string ; // make sure to only use first four elements in split
+        categories += "-" + string ; // will give us 4 categories that client side will split
     }
 
     @Override

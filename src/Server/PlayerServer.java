@@ -29,7 +29,6 @@ public class PlayerServer {
             toClient = new ObjectOutputStream(socket.getOutputStream());
             fromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         }catch(Exception e){
-            System.out.println("vi är på skivare");
             e.printStackTrace();
         }
     }
@@ -49,10 +48,7 @@ public class PlayerServer {
         toClient.writeObject(question);
     }
     public void receiveAnswer() throws IOException,NullPointerException {
-        String s;
-        s = fromClient.readLine();
-        System.out.println(s);
-        if(s.equals("CORRECT")){
+        if(fromClient.readLine().equals("CORRECT")){
             scoreHandler.increaseScore();
         }
         try {
@@ -81,9 +77,11 @@ public class PlayerServer {
             e.printStackTrace();
         }
     }
+
     public void sendWaitScreen() throws IOException,NullPointerException{
             toClient.writeObject(wait);
     }
+
     public void resetMyPointsRound(){
         scoreHandler.resetRound();
     }

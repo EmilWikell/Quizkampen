@@ -5,17 +5,15 @@ package GUI;/*
  *Comment about this project
  */
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import javax.swing.*;
-import javax.swing.Timer;
-
-import ClientLogic.ClientTest;
 
 
 public class QuestionPanel extends JPanel implements ActionListener {
@@ -33,7 +31,7 @@ public class QuestionPanel extends JPanel implements ActionListener {
     private JProgressBar bar = new JProgressBar(0, 20);
     private Timer timer ;
 
-    public QuestionPanel(String question, String alt1, String alt2, String alt3, String alt4, PrintWriter out) throws IOException, ClassNotFoundException {
+    public QuestionPanel(String question, String alt1, String alt2, String alt3, String alt4, PrintWriter out) {
         this.question = question;
         this.alt1 = alt1;
         this.alt2 = alt2;
@@ -54,9 +52,9 @@ public class QuestionPanel extends JPanel implements ActionListener {
         questionLabel.setOpaque(true);
         this.add(questionLabel);
 
-        for (int i = 0; i < options.size(); i++) {
+        for (String option : options) {
             Button button = new Button();
-            button.setText(options.get(i));
+            button.setText(option);
             button.addActionListener(this);
             add(button);
             buttonList.add(button);
@@ -93,23 +91,20 @@ public class QuestionPanel extends JPanel implements ActionListener {
                 b.setEnabled(false);
                 if (b.getText().equals(correctAnswer)){
                     b.setBackground(new Color(176, 252, 153));
-                    jb.setOpaque(true);
-                    jb.repaint();
-                    jb.revalidate();
                 }
                 else{
                     b.setBackground(new Color(252, 139, 154));
-                    jb.setOpaque(true);
-                    jb.repaint();
-                    jb.revalidate();
                 }
+                jb.setOpaque(true);
+                jb.repaint();
+                jb.revalidate();
             }
             returnToServer("FALSE");
         }
     }
 
 
-    public List generateListAndshuffle(String item1,String item2, String item3, String item4){
+    public List<String> generateListAndshuffle(String item1,String item2, String item3, String item4){
         this.options.add(item1);
         this.options.add(item2);
         this.options.add(item3);
@@ -139,7 +134,6 @@ public class QuestionPanel extends JPanel implements ActionListener {
     }
 
     private void returnToServer(String string) {
-        System.out.println("we sent back info to server");
         out.println(string);
     }
 

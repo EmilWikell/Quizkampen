@@ -1,15 +1,9 @@
-package GUI;/*
- *Created by: Tom Ganemo
- *Date: YYYY-MM-DD
- *Project name
- *Comment about this project
- */
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
